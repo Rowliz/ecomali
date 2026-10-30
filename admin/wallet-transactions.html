@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wallet Transactions - Admin</title>
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="stylesheet" href="../css/utilities.css" />
+  <link rel="stylesheet" href="../css/wallet-admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <div
+    data-protect="admin,super_admin,moderator,operations_admin,finance_admin,compliance_admin,support_admin,tech_admin">
+  </div>
+
+  <header class="admin-header">
+    <div class="container">
+      <div class="brand">
+        <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+        <img src="../images/logo.png" alt="Eco-Mali Exchange Limited Logo">
+        <div>
+          <h1>Eco-Mali Admin</h1>
+          <p class="muted small">Secure back office • Wallet oversight</p>
+        </div>
+      </div>
+      <nav class="admin-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="users.html" data-permission="users:read">Users</a>
+        <a href="listings.html" data-permission="listings:approve">Listings</a>
+        <a href="wallet-transactions.html" class="active" data-permission="transactions:read">Wallet</a>
+        <a href="reports.html" data-permission="reports:read">Reports</a>
+        <a href="dump-reports.html" data-permission="reports:read">Dump Sites</a>
+        <a href="settings.html" data-permission="settings:update">Settings</a>
+        <a href="/">Back to Site</a>
+      </nav>
+      <div class="nav-actions">
+        <span class="chip"><i class="fas fa-shield-alt"></i> Admin</span>
+        <a href="../profile.html"><i class="fas fa-user-circle"></i> Profile</a>
+        <a href="#" data-logout class="btn-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main container">
+    <div class="wallet-header">
+      <div>
+        <p class="breadcrumb"><a href="dashboard.html">Admin</a> / Wallet Transactions</p>
+        <h1>Wallet Transactions</h1>
+        <p class="muted">Monitor all wallet activity across recyclers and generators. Filter by status, type, or user.
+        </p>
+      </div>
+      <div class="header-actions">
+        <a class="btn btn-ghost" href="settings.html"><i class="fas fa-gear"></i> Platform Settings</a>
+        <button onclick="loadData()" class="btn btn-primary"><i class="fas fa-rotate"></i> Refresh</button>
+        <a class="btn btn-ghost" href="dashboard.html"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="wallet-stats">
+      <div class="stat-card">
+        <h3>Total Transactions</h3>
+        <div class="value" id="stat-total">-</div>
+      </div>
+      <div class="stat-card">
+        <h3>Pending</h3>
+        <div class="value" id="stat-pending">-</div>
+      </div>
+      <div class="stat-card">
+        <h3>Completed</h3>
+        <div class="value" id="stat-completed">-</div>
+      </div>
+      <div class="stat-card">
+        <h3>Failed</h3>
+        <div class="value" id="stat-failed">-</div>
+      </div>
+      <div class="stat-card">
+        <h3>Total Deposits</h3>
+        <div class="value" id="stat-deposits">-</div>
+        <div class="subvalue" id="stat-deposits-volume">KES 0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Total Withdrawals</h3>
+        <div class="value" id="stat-withdrawals">-</div>
+        <div class="subvalue" id="stat-withdrawals-volume">KES 0</div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <div class="filter-group">
+        <label for="filter-status">Status</label>
+        <select id="filter-status" onchange="applyFilters()">
+          <option value="">All</option>
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+          <option value="failed">Failed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-type">Type</label>
+        <select id="filter-type" onchange="applyFilters()">
+          <option value="">All</option>
+          <option value="deposit">Deposit</option>
+          <option value="withdrawal">Withdrawal</option>
+          <option value="purchase">Purchase</option>
+          <option value="sale">Sale</option>
+          <option value="refund">Refund</option>
+          <option value="commission">Commission</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-user">User ID</label>
+        <input type="text" id="filter-user" placeholder="Enter user ID" onchange="applyFilters()" />
+      </div>
+    </div>
+
+    <!-- Transactions Table -->
+    <div class="transactions-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>User</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Balance Before</th>
+            <th>Balance After</th>
+            <th>Status</th>
+            <th>Payment Method</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="transactions-body">
+          <tr>
+            <td colspan="9" class="loading">Loading...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button id="prev-btn" onclick="previousPage()" disabled>Previous</button>
+      <span id="page-info">Page 1</span>
+      <button id="next-btn" onclick="nextPage()">Next</button>
+    </div>
+  </main>
+
+  <footer class="admin-footer">
+    <div class="container">
+      <p>&copy; 2025 Eco-Mali Exchange Limited. All rights reserved.</p>
+      <p class="text-muted">Admin Portal - Restricted Access</p>
+    </div>
+  </footer>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/session.js"></script>
+  <script src="../js/responsive-admin.js"></script>
+  <script>
+    let currentPage = 0;
+    const limit = 50;
+    let totalTransactions = 0;
+
+
+    async function loadStats() {
+      try {
+        const stats = await apiGet('/api/admin/wallet/stats');
+        document.getElementById('stat-total').textContent = stats.total || 0;
+        document.getElementById('stat-pending').textContent = stats.byStatus?.pending || 0;
+        document.getElementById('stat-completed').textContent = stats.byStatus?.completed || 0;
+        document.getElementById('stat-failed').textContent = stats.byStatus?.failed || 0;
+        document.getElementById('stat-deposits').textContent = stats.byType?.deposits || 0;
+        document.getElementById('stat-deposits-volume').textContent = `KES ${(stats.volume?.deposits || 0).toLocaleString()}`;
+        document.getElementById('stat-withdrawals').textContent = stats.byType?.withdrawals || 0;
+        document.getElementById('stat-withdrawals-volume').textContent = `KES ${(stats.volume?.withdrawals || 0).toLocaleString()}`;
+      } catch (error) {
+        console.error('Failed to load stats:', error);
+      }
+    }
+
+    async function loadTransactions() {
+      const status = document.getElementById('filter-status').value;
+      const type = document.getElementById('filter-type').value;
+      const userId = document.getElementById('filter-user').value.trim();
+
+      const params = new URLSearchParams({
+        limit: limit.toString(),
+        skip: (currentPage * limit).toString()
+      });
+
+      if (status) params.append('status', status);
+      if (type) params.append('type', type);
+      if (userId) params.append('userId', userId);
+
+      try {
+        const data = await apiGet(`/api/admin/wallet/transactions?${params}`);
+        totalTransactions = data.total;
+        renderTransactions(data.transactions || []);
+        updatePagination();
+      } catch (error) {
+        console.error('Failed to load transactions:', error);
+        document.getElementById('transactions-body').innerHTML = `
+          <tr><td colspan="9" class="no-data">Failed to load transactions</td></tr>
+        `;
+      }
+    }
+
+    function renderTransactions(transactions) {
+      const tbody = document.getElementById('transactions-body');
+
+      if (transactions.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" class="no-data">No transactions found</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = transactions.map(t => `
+        <tr>
+          <td>${new Date(t.createdAt).toLocaleString()}</td>
+          <td>
+            <div class="user-info">
+              <span class="user-name">${t.user.name}</span>
+              <span class="user-email">${t.user.email}</span>
+              <span class="user-role">${t.user.role}</span>
+            </div>
+          </td>
+          <td><span class="type-badge type-${t.type}">${t.type}</span></td>
+          <td class="${t.type === 'deposit' || t.type === 'sale' ? 'amount-positive' : 'amount-negative'}">
+            ${t.type === 'deposit' || t.type === 'sale' ? '+' : '-'}KES ${t.amount.toLocaleString()}
+          </td>
+          <td>KES ${t.balanceBefore.toLocaleString()}</td>
+          <td>KES ${t.balanceAfter.toLocaleString()}</td>
+          <td><span class="status-badge status-${t.status}">${t.status}</span></td>
+          <td>${t.paymentMethod || '-'}</td>
+          <td>
+            ${t.status === 'pending' ? `
+              <button class="action-btn btn-approve" onclick="updateStatus('${t._id}', 'completed')">Approve</button>
+              <button class="action-btn btn-reject" onclick="updateStatus('${t._id}', 'failed')">Reject</button>
+            ` : '-'}
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function updatePagination() {
+      const totalPages = Math.ceil(totalTransactions / limit);
+      document.getElementById('page-info').textContent = `Page ${currentPage + 1} of ${totalPages || 1}`;
+      document.getElementById('prev-btn').disabled = currentPage === 0;
+      document.getElementById('next-btn').disabled = (currentPage + 1) * limit >= totalTransactions;
+    }
+
+    function previousPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        loadTransactions();
+      }
+    }
+
+    function nextPage() {
+      if ((currentPage + 1) * limit < totalTransactions) {
+        currentPage++;
+        loadTransactions();
+      }
+    }
+
+    function applyFilters() {
+      currentPage = 0;
+      loadTransactions();
+    }
+
+    async function updateStatus(transactionId, newStatus) {
+      if (!confirm(`Are you sure you want to ${newStatus === 'completed' ? 'approve' : 'reject'} this transaction?`)) {
+        return;
+      }
+
+      try {
+        await apiPatch(`/api/admin/wallet/transactions/${transactionId}/status`, { status: newStatus });
+        alert('Transaction status updated successfully');
+        loadData();
+      } catch (error) {
+        console.error('Failed to update status:', error);
+        alert('Failed to update transaction status');
+      }
+    }
+
+    function loadData() {
+      loadStats();
+      loadTransactions();
+    }
+
+    // Initial load
+    loadData();
+  </script>
+</body>
+
+</html>

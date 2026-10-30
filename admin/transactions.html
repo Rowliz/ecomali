@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Transactions - Eco-Mali Exchange</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/admin-transactions.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="admin-page"
+  data-protect="admin,super_admin,moderator,operations_admin,finance_admin,compliance_admin,support_admin,tech_admin">
+  <header class="admin-header">
+    <div class="admin-header-left">
+      <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="admin-logo">
+        <i class="fas fa-recycle"></i>
+        <span>Eco-Mali Admin</span>
+      </div>
+    </div>
+    <div class="admin-header-right">
+      <div class="admin-user">
+        <span class="admin-user-name" id="adminName">Admin User</span>
+        <button class="btn-logout" data-logout>
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="adminSidebar">
+      <nav class="admin-nav">
+        <a href="dashboard.html" class="nav-item">
+          <i class="fas fa-chart-line"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="users.html" class="nav-item" data-permission="users:read">
+          <i class="fas fa-users"></i>
+          <span>Users</span>
+        </a>
+        <a href="listings.html" class="nav-item" data-permission="listings:approve">
+          <i class="fas fa-list"></i>
+          <span>Listings</span>
+        </a>
+        <a href="transactions.html" class="nav-item active" data-permission="transactions:read">
+          <i class="fas fa-file-invoice-dollar"></i>
+          <span>Transactions</span>
+        </a>
+        <a href="reports.html" class="nav-item" data-permission="reports:read">
+          <i class="fas fa-chart-pie"></i>
+          <span>Reports</span>
+        </a>
+        <a href="settings.html" class="nav-item" data-permission="settings:update">
+          <i class="fas fa-cog"></i>
+          <span>Settings</span>
+        </a>
+        <a href="/" class="nav-item">
+          <i class="fas fa-home"></i>
+          <span>Back to Site</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="admin-content">
+      <div class="page-header">
+        <h1>Transactions</h1>
+        <p class="page-subtitle">Manage payments and transaction records</p>
+      </div>
+
+      <div class="filters-section">
+        <div class="filter-group">
+          <label for="statusFilter">Status:</label>
+          <select id="statusFilter">
+            <option value="">All</option>
+            <option value="pending">Pending</option>
+            <option value="completed">Completed</option>
+            <option value="failed">Failed</option>
+            <option value="refunded">Refunded</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="methodFilter">Method:</label>
+          <select id="methodFilter">
+            <option value="">All</option>
+            <option value="M-Pesa">M-Pesa</option>
+            <option value="Card">Card</option>
+            <option value="Cash">Cash</option>
+          </select>
+        </div>
+        <button id="exportCsv" class="btn-secondary"><i class="fas fa-download"></i> Export CSV</button>
+      </div>
+
+      <div class="table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Method</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="transactionsBody">
+            <tr>
+              <td colspan="8" class="text-center">Loading transactions...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/session.js"></script>
+  <script src="../js/admin-transactions.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://r2cdn.perplexity.ai; img-src 'self' data: https:; connect-src 'self' https://eco-mali.onrender.com https://cdn.jsdelivr.net;">
+  <title>Recycler Dashboard — Eco-Mali Exchange</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/admin.css">
+  <link rel="stylesheet" href="../../css/recycler-dashboard.css">
+  <link rel="stylesheet" href="../../css/wallet.css">
+  <link rel="stylesheet" href="../../css/eco-points.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div data-protect="recycler"></div>
+
+  <!-- Header -->
+  <header class="admin-header container">
+    <div class="brand">
+      <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+      <img src="../../images/logo.png" alt="Eco-Mali">
+      <h1>Recycler Portal</h1>
+    </div>
+    <div class="nav-actions">
+      <a href="../../index.html" class="btn-ghost"><i class="fas fa-home"></i> Home</a>
+      <a href="../../profile.html" class="btn-ghost"><i class="fas fa-user-circle"></i> Profile</a>
+      <a href="#" data-logout class="btn-ghost"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+    <!-- Wallet Widget -->
+    <div id="walletWidget"></div>
+
+    <!-- Eco Points Widget -->
+    <div id="ecoPointsWidget"></div>
+
+    <!-- Dashboard Stats -->
+    <section class="dashboard-stats">
+      <div class="stat-card">
+        <div class="stat-icon primary">
+          <i class="fas fa-box-open"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="availableListings">0</h3>
+          <p>Available Listings</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon warning">
+          <i class="fas fa-gavel"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="myBids">0</h3>
+          <p>My Bids</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon success">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="acceptedBids">0</h3>
+          <p>Accepted Bids</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon info">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="totalPurchases">KES 0</h3>
+          <p>Total Purchases</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="card quick-actions-section">
+      <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+      <div class="quick-actions-grid">
+        <button class="quick-action-btn" onclick="viewAvailableListings()">
+          <i class="fas fa-search"></i>
+          <span>Browse Listings</span>
+        </button>
+        <button class="quick-action-btn" onclick="viewMyBids()">
+          <i class="fas fa-gavel"></i>
+          <span>My Bids</span>
+        </button>
+        <button class="quick-action-btn" onclick="viewPurchases()">
+          <i class="fas fa-shopping-cart"></i>
+          <span>My Purchases</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Available Listings Section -->
+    <section class="card" id="listingsSection">
+      <div class="card-header">
+        <h2><i class="fas fa-box"></i> Available Waste Listings</h2>
+        <div class="card-actions">
+          <select id="listingFilter" onchange="filterListings()">
+            <option value="all">All Types</option>
+            <option value="plastic">Plastic</option>
+            <option value="paper">Paper</option>
+            <option value="metal">Metal</option>
+            <option value="glass">Glass</option>
+            <option value="organic">Organic</option>
+            <option value="electronic">Electronic</option>
+            <option value="textile">Textile</option>
+          </select>
+          <input type="text" id="searchListings" placeholder="Search by location..." oninput="filterListings()">
+        </div>
+      </div>
+      <div class="listings-container" id="listingsContainer">
+        <div class="loading-state">
+          <i class="fas fa-spinner fa-spin"></i>
+          <p>Loading available listings...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bid Modal -->
+    <div id="bidModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-gavel"></i> Place Bid</h3>
+          <button class="modal-close" onclick="closeBidModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="bidForm">
+            <input type="hidden" id="bidListingId" name="listingId">
+
+            <div class="listing-preview" id="listingPreview"></div>
+
+            <div class="form-field">
+              <label for="bidAmount">Your Bid Amount (KES per kg) *</label>
+              <input type="number" id="bidAmount" name="bidAmount" min="1" step="0.1" required>
+              <small>Must be equal to or higher than the bidding price</small>
+            </div>
+
+            <div class="form-field">
+              <label for="bidMessage">Message (Optional)</label>
+              <textarea id="bidMessage" name="message" rows="3"
+                placeholder="Add a message to the waste generator..."></textarea>
+            </div>
+
+            <div class="pricing-summary">
+              <div class="price-row">
+                <span>Waste Amount:</span>
+                <span id="bidWasteAmount">0 kg</span>
+              </div>
+              <div class="price-row">
+                <span>Your Bid per kg:</span>
+                <span id="bidPricePerKg">KES 0</span>
+              </div>
+              <div class="price-row total">
+                <span>Total Bid Amount:</span>
+                <strong id="bidTotalAmount">KES 0</strong>
+              </div>
+            </div>
+
+            <div class="info-notice">
+              <i class="fas fa-info-circle"></i>
+              <span>Payment will be processed through your wallet when bid is accepted</span>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">
+                <i class="fas fa-paper-plane"></i> Submit Bid
+              </button>
+              <button type="button" class="btn-secondary" onclick="closeBidModal()">
+                <i class="fas fa-times"></i> Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Bids Section -->
+    <section class="card" id="bidsSection">
+      <div class="card-header">
+        <h2><i class="fas fa-gavel"></i> My Bids</h2>
+        <div class="card-actions">
+          <select id="bidFilter" onchange="filterBids()">
+            <option value="all">All Bids</option>
+            <option value="pending">Pending</option>
+            <option value="accepted">Accepted</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+      </div>
+      <div class="bids-container" id="bidsContainer">
+        <div class="empty-state">
+          <i class="fas fa-gavel"></i>
+          <p>No bids placed yet</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Purchases Section -->
+    <section class="card" id="purchasesSection">
+      <div class="card-header">
+        <h2><i class="fas fa-shopping-cart"></i> My Purchases</h2>
+        <div class="card-actions">
+          <button class="btn-primary" onclick="openPaymentModal()"><i class="fas fa-credit-card"></i> Make
+            Payment</button>
+        </div>
+      </div>
+      <div class="purchases-container" id="purchasesContainer">
+        <div class="empty-state">
+          <i class="fas fa-shopping-cart"></i>
+          <p>No purchases yet</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fas fa-credit-card"></i> Make Payment</h3>
+          <button class="modal-close" onclick="closePaymentModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="paymentForm">
+            <div class="form-field">
+              <label for="payAmount">Amount (KES) *</label>
+              <input type="number" id="payAmount" name="amount" min="1" required>
+            </div>
+            <div class="form-field">
+              <label for="payDescription">Description</label>
+              <input type="text" id="payDescription" name="description" placeholder="Waste purchase payment">
+            </div>
+            <div class="info-notice">
+              <i class="fas fa-info-circle"></i>
+              <span>Payment will be deducted from your wallet balance</span>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary"><i class="fas fa-check"></i> Pay Now</button>
+              <button type="button" class="btn-secondary" onclick="closePaymentModal()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="admin-footer">&copy; 2025 Eco-Mali Exchange Limited</footer>
+
+  <script src="../../js/api.js"></script>
+  <script src="../../js/session.js"></script>
+  <script src="../../js/wallet.js"></script>
+  <script src="../../js/eco-points.js"></script>
+  <script src="../../js/recycler-dashboard.js"></script>
+  <script src="../../js/responsive-admin.js"></script>
+</body>
+
+</html>

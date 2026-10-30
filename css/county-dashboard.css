@@ -1,0 +1,540 @@
+/* County Dashboard Styles */
+
+.county-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.county-selector, .period-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.county-selector label, .period-selector label {
+  font-weight: 600;
+  color: #333;
+}
+
+.county-selector select, .period-selector select {
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.county-selector select:hover, .period-selector select:hover {
+  border-color: #4CAF50;
+}
+
+.county-selector select:focus, .period-selector select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+/* Overview Stats Grid */
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.overview-stats .stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.overview-stats .stat-card:nth-child(2) {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.overview-stats .stat-card:nth-child(3) {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.overview-stats .stat-card:nth-child(4) {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+/* User Stats */
+.user-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.user-stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #4CAF50;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.user-stat-card h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.user-stat-card .value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Waste Breakdown Section */
+.waste-breakdown-section {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.waste-breakdown-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.waste-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.waste-category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 4px solid #ddd;
+}
+
+.waste-category.plastic {
+  border-left-color: #2196F3;
+}
+
+.waste-category.organic {
+  border-left-color: #4CAF50;
+}
+
+.waste-category.paper {
+  border-left-color: #FF9800;
+}
+
+.waste-category.metal {
+  border-left-color: #9E9E9E;
+}
+
+.waste-category.glass {
+  border-left-color: #00BCD4;
+}
+
+.waste-category.ewaste {
+  border-left-color: #F44336;
+}
+
+.category-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.category-stats {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.category-value {
+  color: #666;
+  font-size: 14px;
+}
+
+.category-percent {
+  background: #4CAF50;
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Geographic Distribution */
+.geographic-section {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.heat-map-container {
+  height: 400px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  border: 1px dashed #ddd;
+}
+
+.heat-map-placeholder {
+  text-align: center;
+  color: #666;
+}
+
+.heat-map-placeholder i {
+  font-size: 48px;
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+.geographic-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.geo-stat {
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.geo-stat h4 {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.geo-stat .value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+/* Operations Performance */
+.operations-section {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.operations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.operation-metric {
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.operation-metric h4 {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  color: #555;
+  font-weight: 500;
+}
+
+.operation-metric .value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Recycler Performance */
+.recycler-section {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.recycler-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.recycler-metric {
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid #4CAF50;
+}
+
+.recycler-metric h4 {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.recycler-metric .value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Field Agent Activity */
+.agent-section {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.agent-metric {
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid #2196F3;
+}
+
+.agent-metric h4 {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.agent-metric .value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Compliance & Risk Flags */
+.compliance-section {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.risk-flags-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.risk-flag {
+  padding: 15px 20px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 4px solid;
+}
+
+.risk-flag.warning {
+  background: #fff3cd;
+  border-left-color: #ffc107;
+}
+
+.risk-flag.danger {
+  background: #f8d7da;
+  border-left-color: #dc3545;
+}
+
+.risk-flag.critical {
+  background: #d1ecf1;
+  border-left-color: #0dcaf0;
+}
+
+.risk-flag h4 {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.risk-flag .status {
+  font-size: 13px;
+  color: #666;
+}
+
+.risk-badge {
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.risk-badge.warning {
+  background: #ffc107;
+  color: #333;
+}
+
+.risk-badge.danger {
+  background: #dc3545;
+  color: white;
+}
+
+.risk-badge.critical {
+  background: #0dcaf0;
+  color: white;
+}
+
+/* Financial Snapshot */
+.financial-section {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  border: 2px dashed #ffc107;
+}
+
+.financial-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.restricted-badge {
+  background: #ffc107;
+  color: #333;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.financial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.financial-metric {
+  padding: 15px;
+  background: linear-gradient(135deg, #fffbf0 0%, #fff8e1 100%);
+  border-radius: 6px;
+}
+
+.financial-metric h4 {
+  margin: 0 0 8px 0;
+  font-size: 12px;
+  color: #666;
+  font-weight: 500;
+}
+
+.financial-metric .value {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Environmental Impact */
+.impact-section {
+  background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.impact-section h3 {
+  color: #1b5e20;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.impact-metric {
+  padding: 20px;
+  background: white;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.impact-metric h4 {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  color: #1b5e20;
+  font-weight: 500;
+}
+
+.impact-metric .value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .county-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .waste-breakdown-content {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-stats,
+  .user-stats-grid,
+  .operations-grid,
+  .recycler-grid,
+  .agent-grid,
+  .risk-flags-grid,
+  .financial-grid,
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+}

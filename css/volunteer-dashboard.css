@@ -1,0 +1,493 @@
+/* Volunteer Dashboard Styles */
+
+.volunteers-section .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.section-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  min-width: 200px;
+}
+
+.filter-select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+}
+
+.volunteer-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.volunteer-name strong {
+  color: #2E7D32;
+  font-weight: 600;
+}
+
+.volunteer-name small {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.skill-tag {
+  background: #e8f5e9;
+  color: #2E7D32;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+/* Activity Grid */
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.activity-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid #2E7D32;
+}
+
+.activity-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.activity-icon.cleanup { background: #1976D2; }
+.activity-icon.awareness { background: #F57C00; }
+.activity-icon.sorting { background: #7B1FA2; }
+.activity-icon.youth { background: #0288D1; }
+.activity-icon.meetings { background: #388E3C; }
+
+.activity-info h3 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #2E7D32;
+}
+
+.activity-info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Recognition Section */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #eee;
+}
+
+.tab-btn {
+  padding: 0.75rem 1.5rem;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.3s;
+}
+
+.tab-btn.active {
+  color: #2E7D32;
+  border-bottom-color: #2E7D32;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.top-volunteer-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+.rank {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.rank-1 { background: linear-gradient(135deg, #FFD700, #FFA500); }
+.rank-2 { background: linear-gradient(135deg, #C0C0C0, #808080); }
+.rank-3 { background: linear-gradient(135deg, #CD7F32, #8B4513); }
+
+.volunteer-info {
+  flex: 1;
+}
+
+.volunteer-info h4 {
+  margin: 0 0 0.25rem;
+  color: #333;
+}
+
+.volunteer-info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.volunteer-badge i {
+  font-size: 2rem;
+}
+
+.volunteer-badge i.gold { color: #FFD700; }
+.volunteer-badge i.silver { color: #C0C0C0; }
+.volunteer-badge i.bronze { color: #CD7F32; }
+
+.badges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.badge-card {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.badge-card.bronze {
+  background: linear-gradient(135deg, #CD7F32, #8B4513);
+  color: white;
+}
+
+.badge-card.silver {
+  background: linear-gradient(135deg, #C0C0C0, #808080);
+  color: white;
+}
+
+.badge-card.gold {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: white;
+}
+
+.badge-card i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.badge-card h4 {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.badge-card p {
+  margin: 0.5rem 0;
+  opacity: 0.9;
+}
+
+.badge-card span {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Impact Grid */
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.impact-stat {
+  text-align: center;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.impact-stat i {
+  font-size: 2.5rem;
+  color: #2E7D32;
+  margin-bottom: 0.75rem;
+}
+
+.impact-stat h3 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+  color: #333;
+}
+
+.impact-stat p {
+  margin: 0;
+  color: #666;
+}
+
+/* Compliance Grid */
+.compliance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.compliance-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.compliance-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.compliance-icon.success { background: #4CAF50; }
+.compliance-icon.warning { background: #FF9800; }
+.compliance-icon.primary { background: #2196F3; }
+.compliance-icon.info { background: #00BCD4; }
+
+.compliance-info h4 {
+  margin: 0 0 0.25rem;
+  color: #333;
+  font-size: 1rem;
+}
+
+.compliance-info p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Modals */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #2E7D32;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #999;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+/* Form Fields */
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: inherit;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: #2E7D32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+/* Buttons */
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-sm.btn-primary {
+  background: #2E7D32;
+  color: white;
+}
+
+.btn-sm.btn-primary:hover {
+  background: #1B5E20;
+}
+
+/* Notifications */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s;
+  z-index: 2000;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification-success { border-left: 4px solid #4CAF50; }
+.notification-error { border-left: 4px solid #f44336; }
+.notification-info { border-left: 4px solid #2196F3; }
+
+.notification i {
+  font-size: 1.5rem;
+}
+
+.notification-success i { color: #4CAF50; }
+.notification-error i { color: #f44336; }
+.notification-info i { color: #2196F3; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .section-actions {
+    width: 100%;
+  }
+  
+  .search-input,
+  .filter-select {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .activity-grid,
+  .impact-grid,
+  .compliance-grid,
+  .badges-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tabs {
+    overflow-x: auto;
+  }
+  
+  .tab-btn {
+    white-space: nowrap;
+  }
+}

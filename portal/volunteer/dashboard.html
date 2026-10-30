@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://r2cdn.perplexity.ai; img-src 'self' data: https:; connect-src 'self' https://eco-mali.onrender.com;">
+  <title>Volunteer Dashboard — Eco-Mali Exchange</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/admin.css">
+  <link rel="stylesheet" href="../../css/volunteer-dashboard.css">
+  <link rel="stylesheet" href="../../css/eco-points.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div data-protect="volunteer,admin"></div>
+
+  <!-- Header -->
+  <header class="admin-header container">
+    <div class="brand">
+      <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+      <img src="../../images/logo.png" alt="Eco-Mali">
+      <h1>Volunteer Portal</h1>
+    </div>
+    <div class="nav-actions">
+      <a href="../../index.html" class="btn-ghost"><i class="fas fa-home"></i> Home</a>
+      <a href="../../profile.html" class="btn-ghost"><i class="fas fa-user-circle"></i> Profile</a>
+      <a href="#" data-logout class="btn-ghost"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+    <!-- Eco Points Widget -->
+    <div id="ecoPointsWidget"></div>
+
+    <!-- Dashboard Overview Stats -->
+    <section class="dashboard-stats">
+      <div class="stat-card">
+        <div class="stat-icon primary">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="totalVolunteers">0</h3>
+          <p>Total Registered Volunteers</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon success">
+          <i class="fas fa-user-plus"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="newVolunteers">0</h3>
+          <p>New Volunteers (This Month)</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon warning">
+          <i class="fas fa-user-check"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="activeVolunteers">0</h3>
+          <p>Active Volunteers</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon danger">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="dropOffRate">0%</h3>
+          <p>Drop-off Rate</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions">
+      <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+      <div class="action-grid">
+        <button class="quick-action-btn" onclick="showLogActivity()">
+          <i class="fas fa-clipboard-list"></i>
+          <span>Log Activity</span>
+        </button>
+        <button class="quick-action-btn" onclick="showBroadcast()">
+          <i class="fas fa-bullhorn"></i>
+          <span>Broadcast Message</span>
+        </button>
+        <button class="quick-action-btn" onclick="showRecognition()">
+          <i class="fas fa-award"></i>
+          <span>Volunteer Recognition</span>
+        </button>
+        <button class="quick-action-btn" onclick="showReports()">
+          <i class="fas fa-chart-bar"></i>
+          <span>View Reports</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Volunteer Profiles Table -->
+    <section class="volunteers-section card">
+      <div class="section-header">
+        <h2><i class="fas fa-users"></i> Volunteer Profiles</h2>
+        <div class="section-actions">
+          <input type="text" id="searchVolunteers" placeholder="Search volunteers..." class="search-input">
+          <select id="filterSkill" class="filter-select">
+            <option value="">All Skills</option>
+            <option value="mobilization">Mobilization</option>
+            <option value="data">Data</option>
+            <option value="sorting">Sorting</option>
+            <option value="awareness">Awareness</option>
+          </select>
+          <select id="filterStatus" class="filter-select">
+            <option value="">All Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-container">
+        <table class="table" id="volunteersTable">
+          <thead>
+            <tr>
+              <th>Name / Volunteer ID</th>
+              <th>Location</th>
+              <th>Skills</th>
+              <th>Assigned Coordinator</th>
+              <th>Last Activity</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="volunteersTableBody">
+            <tr>
+              <td colspan="7" class="text-center">Loading volunteers...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Activity & Engagement Tracking -->
+    <section class="activity-section card">
+      <h2><i class="fas fa-chart-line"></i> Activity & Engagement Tracking</h2>
+      <div class="activity-grid">
+        <div class="activity-card">
+          <div class="activity-icon cleanup">
+            <i class="fas fa-broom"></i>
+          </div>
+          <div class="activity-info">
+            <h3 id="cleanupsCount">0</h3>
+            <p>Clean-ups Conducted</p>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="activity-icon awareness">
+            <i class="fas fa-bullhorn"></i>
+          </div>
+          <div class="activity-info">
+            <h3 id="awarenessCount">0</h3>
+            <p>Awareness Sessions</p>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="activity-icon sorting">
+            <i class="fas fa-sort"></i>
+          </div>
+          <div class="activity-info">
+            <h3 id="sortingCount">0</h3>
+            <p>Waste Sorting Events</p>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="activity-icon youth">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div class="activity-info">
+            <h3 id="youthCount">0</h3>
+            <p>Youth Engagements</p>
+          </div>
+        </div>
+        <div class="activity-card">
+          <div class="activity-icon meetings">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <div class="activity-info">
+            <h3 id="meetingsCount">0</h3>
+            <p>County Meetings</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Volunteer Recognition -->
+    <section class="recognition-section card">
+      <h2><i class="fas fa-award"></i> Volunteer Recognition</h2>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="monthly">Monthly</button>
+        <button class="tab-btn" data-tab="quarterly">Quarterly</button>
+        <button class="tab-btn" data-tab="badges">Badges</button>
+      </div>
+      <div class="tab-content active" id="monthly-tab">
+        <div class="top-volunteers" id="topVolunteersMonthly">
+          <p class="text-center">Loading top volunteers...</p>
+        </div>
+      </div>
+      <div class="tab-content" id="quarterly-tab">
+        <div class="top-volunteers" id="topVolunteersQuarterly">
+          <p class="text-center">Loading quarterly leaders...</p>
+        </div>
+      </div>
+      <div class="tab-content" id="badges-tab">
+        <div class="badges-grid">
+          <div class="badge-card bronze">
+            <i class="fas fa-medal"></i>
+            <h4>Bronze Badge</h4>
+            <p>50+ hours or 20+ activities</p>
+            <span id="bronzeCount">0 volunteers</span>
+          </div>
+          <div class="badge-card silver">
+            <i class="fas fa-medal"></i>
+            <h4>Silver Badge</h4>
+            <p>100+ hours or 50+ activities</p>
+            <span id="silverCount">0 volunteers</span>
+          </div>
+          <div class="badge-card gold">
+            <i class="fas fa-medal"></i>
+            <h4>Gold Badge</h4>
+            <p>200+ hours or 100+ activities</p>
+            <span id="goldCount">0 volunteers</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Tracking -->
+    <section class="impact-section card">
+      <h2><i class="fas fa-leaf"></i> Hours, Contribution & Impact</h2>
+      <div class="impact-grid">
+        <div class="impact-stat">
+          <i class="fas fa-clock"></i>
+          <h3 id="totalHours">0</h3>
+          <p>Hours Volunteered</p>
+        </div>
+        <div class="impact-stat">
+          <i class="fas fa-weight"></i>
+          <h3 id="wasteCollected">0 kg</h3>
+          <p>Waste Collected</p>
+        </div>
+        <div class="impact-stat">
+          <i class="fas fa-home"></i>
+          <h3 id="householdsEngaged">0</h3>
+          <p>Households Engaged</p>
+        </div>
+        <div class="impact-stat">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3 id="sitesCovered">0</h3>
+          <p>Sites Covered</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compliance Indicators -->
+    <section class="compliance-section card">
+      <h2><i class="fas fa-shield-alt"></i> Compliance & Safety</h2>
+      <div class="compliance-grid">
+        <div class="compliance-item">
+          <div class="compliance-icon success">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="compliance-info">
+            <h4>Code of Conduct</h4>
+            <p id="conductCompliance">0% compliance</p>
+          </div>
+        </div>
+        <div class="compliance-item">
+          <div class="compliance-icon warning">
+            <i class="fas fa-child"></i>
+          </div>
+          <div class="compliance-info">
+            <h4>Child Protection</h4>
+            <p id="childProtection">0% compliance</p>
+          </div>
+        </div>
+        <div class="compliance-item">
+          <div class="compliance-icon primary">
+            <i class="fas fa-hard-hat"></i>
+          </div>
+          <div class="compliance-info">
+            <h4>Health & Safety</h4>
+            <p id="healthSafety">0% compliance</p>
+          </div>
+        </div>
+        <div class="compliance-item">
+          <div class="compliance-icon info">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <div class="compliance-info">
+            <h4>Data Consent</h4>
+            <p id="dataConsent">0% compliance</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Log Activity Modal -->
+  <div id="logActivityModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-clipboard-list"></i> Log Volunteer Activity</h3>
+        <button class="modal-close" onclick="closeLogActivity()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="activityForm">
+          <div class="form-field">
+            <label for="activityType">Activity Type *</label>
+            <select id="activityType" name="activityType" required>
+              <option value="">Select activity type</option>
+              <option value="cleanup">Clean-up Event</option>
+              <option value="awareness">Community Awareness</option>
+              <option value="sorting">Waste Sorting</option>
+              <option value="youth">Youth Engagement</option>
+              <option value="meeting">County Meeting</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="activityDate">Date *</label>
+            <input type="date" id="activityDate" name="activityDate" required>
+          </div>
+          <div class="form-field">
+            <label for="hoursSpent">Hours Spent *</label>
+            <input type="number" id="hoursSpent" name="hoursSpent" min="0.5" step="0.5" required>
+          </div>
+          <div class="form-field">
+            <label for="location">Location *</label>
+            <input type="text" id="location" name="location" placeholder="Ward, Sub-county" required>
+          </div>
+          <div class="form-field">
+            <label for="participants">Number of Participants</label>
+            <input type="number" id="participants" name="participants" min="1">
+          </div>
+          <div class="form-field">
+            <label for="wasteAmount">Waste Collected (kg)</label>
+            <input type="number" id="wasteAmount" name="wasteAmount" min="0" step="0.1">
+          </div>
+          <div class="form-field">
+            <label for="activityNotes">Notes</label>
+            <textarea id="activityNotes" name="activityNotes" rows="3"></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" onclick="closeLogActivity()">Cancel</button>
+            <button type="submit" class="btn-primary">Log Activity</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Broadcast Modal -->
+  <div id="broadcastModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-bullhorn"></i> Broadcast Message</h3>
+        <button class="modal-close" onclick="closeBroadcast()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="broadcastForm">
+          <div class="form-field">
+            <label for="messageType">Message Type *</label>
+            <select id="messageType" name="messageType" required>
+              <option value="announcement">Announcement</option>
+              <option value="event">Event Invitation</option>
+              <option value="training">Training Notification</option>
+              <option value="feedback">Feedback Request</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="messageSubject">Subject *</label>
+            <input type="text" id="messageSubject" name="messageSubject" required>
+          </div>
+          <div class="form-field">
+            <label for="messageBody">Message *</label>
+            <textarea id="messageBody" name="messageBody" rows="5" required></textarea>
+          </div>
+          <div class="form-field">
+            <label for="targetAudience">Target Audience *</label>
+            <select id="targetAudience" name="targetAudience" required>
+              <option value="all">All Volunteers</option>
+              <option value="active">Active Volunteers Only</option>
+              <option value="coordinators">Coordinators Only</option>
+              <option value="county">Specific County</option>
+            </select>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" onclick="closeBroadcast()">Cancel</button>
+            <button type="submit" class="btn-primary">Send Broadcast</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../js/api.js"></script>
+  <script src="../../js/session.js"></script>
+  <script src="../../js/eco-points.js"></script>
+  <script src="../../js/volunteer-dashboard.js"></script>
+  <script src="../../js/responsive-admin.js"></script>
+</body>
+
+</html>

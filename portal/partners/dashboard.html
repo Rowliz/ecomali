@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://r2cdn.perplexity.ai; img-src 'self' data: https:; connect-src 'self' https://eco-mali.onrender.com;">
+  <title>Partners Dashboard — Eco-Mali Exchange</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/admin.css">
+  <link rel="stylesheet" href="../../css/partners-dashboard.css">
+  <link rel="stylesheet" href="../../css/eco-points.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div data-protect="partner"></div>
+
+  <!-- Header -->
+  <header class="admin-header container">
+    <div class="brand">
+      <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+      <img src="../../images/logo.png" alt="Eco-Mali">
+      <h1>Partners Portal</h1>
+    </div>
+    <div class="nav-actions">
+      <a href="../../index.html" class="btn-ghost"><i class="fas fa-home"></i> Home</a>
+      <a href="../../profile.html" class="btn-ghost"><i class="fas fa-user-circle"></i> Profile</a>
+      <a href="#" data-logout class="btn-ghost"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+    <!-- Eco Points Widget -->
+    <div id="ecoPointsWidget"></div>
+
+    <!-- Hero Section -->
+    <section class="partners-hero-section">
+      <div class="hero-content">
+        <h1>Welcome to Your Partner Dashboard</h1>
+        <p>Access resources, track impact, and manage your partnership with Eco-Mali Exchange Limited</p>
+      </div>
+    </section>
+
+    <!-- Dashboard Stats -->
+    <section class="dashboard-stats">
+      <div class="stat-card">
+        <div class="stat-icon primary">
+          <i class="fas fa-project-diagram"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="activeProjects">0</h3>
+          <p>Active Projects</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon success">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="peopleReached">0</h3>
+          <p>People Reached</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon warning">
+          <i class="fas fa-box"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="wasteDiverted">0 kg</h3>
+          <p>Waste Diverted</p>
+        </div>
+      </div>
+      <div class="stat-icon info">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <div class="stat-info">
+        <h3 id="impactScore">0%</h3>
+        <p>Impact Score</p>
+      </div>
+    </section>
+
+    <!-- Why Partner With Us Section -->
+    <section class="card why-partner-section">
+      <h2><i class="fas fa-star"></i> Why Partner With Eco-Mali Exchange?</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-database"></i>
+          </div>
+          <h3>Access to Waste Data</h3>
+          <p>Get comprehensive insights from our waste mapping and digitization efforts. Access real-time data on waste
+            streams, collection patterns, and recycling rates.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-network-wired"></i>
+          </div>
+          <h3>Youth Network</h3>
+          <p>Connect with our network of 300+ environmentally active youth in Kirinyaga. Tap into a motivated,
+            tech-savvy workforce.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Community Reach</h3>
+          <p>Access 15+ communities across Kirinyaga through our established networks. We have deep roots in the
+            communities we serve.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-sitemap"></i>
+          </div>
+          <h3>Traceable Value Chain</h3>
+          <p>Transparent and digitized recycling value chain for accountability. Track every transaction from waste
+            generator to recycler.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Measurable Impact</h3>
+          <p>Clear metrics and reporting on environmental and social impact. See the real difference your partnership
+            makes.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3>Innovation Platform</h3>
+          <p>Co-create solutions using our digital waste exchange platform. Collaborate on innovative waste management
+            solutions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partnership Benefits -->
+    <section class="card partnership-benefits">
+      <h2><i class="fas fa-gift"></i> Partnership Benefits</h2>
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <h3>Brand Visibility</h3>
+            <p>Get featured on our website, social media, and marketing materials. Showcase your commitment to
+              environmental sustainability.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <h3>Exclusive Access</h3>
+            <p>Access to partner-only events, workshops, and networking opportunities. Connect with other like-minded
+              organizations.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <h3>Impact Reports</h3>
+            <p>Receive detailed impact reports showing the environmental and social outcomes of your partnership.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <h3>Technical Support</h3>
+            <p>Get technical assistance and support for your waste management initiatives. Our team is here to help.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <h3>Co-Marketing Opportunities</h3>
+            <p>Collaborate on joint marketing campaigns and events. Amplify your message through our channels.</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <h3>Priority Support</h3>
+            <p>Dedicated partner support team to assist with your needs. Fast-track responses to your inquiries.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partnership Models -->
+    <section class="card partnership-models-section">
+      <h2><i class="fas fa-handshake"></i> Partnership Models</h2>
+      <div class="models-grid">
+        <div class="model-card">
+          <div class="model-header">
+            <h3>Strategic Partnership</h3>
+            <div class="model-badge">Long-term</div>
+          </div>
+          <div class="model-features">
+            <p><i class="fas fa-check"></i> Co-designed programs</p>
+            <p><i class="fas fa-check"></i> Joint resource mobilization</p>
+            <p><i class="fas fa-check"></i> Shared branding</p>
+            <p><i class="fas fa-check"></i> Data sharing agreement</p>
+            <p><i class="fas fa-check"></i> Joint monitoring & evaluation</p>
+          </div>
+          <div class="model-cta">
+            <p><strong>Ideal for:</strong> Government agencies, large NGOs, corporations</p>
+          </div>
+        </div>
+
+        <div class="model-card featured">
+          <div class="model-header">
+            <h3>Implementation Partnership</h3>
+            <div class="model-badge">Most Common</div>
+          </div>
+          <div class="model-features">
+            <p><i class="fas fa-check"></i> Project-based collaboration</p>
+            <p><i class="fas fa-check"></i> Defined scope and timeline</p>
+            <p><i class="fas fa-check"></i> Resource contribution</p>
+            <p><i class="fas fa-check"></i> Joint community engagement</p>
+            <p><i class="fas fa-check"></i> Shared reporting</p>
+          </div>
+          <div class="model-cta">
+            <p><strong>Ideal for:</strong> Medium NGOs, CBOs, businesses</p>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-header">
+            <h3>Supporting Partnership</h3>
+            <div class="model-badge">Flexible</div>
+          </div>
+          <div class="model-features">
+            <p><i class="fas fa-check"></i> Financial or in-kind support</p>
+            <p><i class="fas fa-check"></i> Event sponsorship</p>
+            <p><i class="fas fa-check"></i> Volunteer engagement</p>
+            <p><i class="fas fa-check"></i> Technical assistance</p>
+            <p><i class="fas fa-check"></i> Recognition as supporter</p>
+          </div>
+          <div class="model-cta">
+            <p><strong>Ideal for:</strong> Small businesses, community groups, individuals</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner Resources -->
+    <section class="card partner-resources">
+      <h2><i class="fas fa-folder-open"></i> Partner Resources</h2>
+      <div class="resources-grid">
+        <div class="resource-card">
+          <i class="fas fa-book"></i>
+          <h3>Partnership Handbook</h3>
+          <p>Comprehensive guide to working with Eco-Mali Exchange</p>
+          <a href="#" class="btn-outline">Download PDF</a>
+        </div>
+        <div class="resource-card">
+          <i class="fas fa-chart-bar"></i>
+          <h3>Impact Reports</h3>
+          <p>View our latest impact reports and metrics</p>
+          <a href="#" class="btn-outline">View Reports</a>
+        </div>
+        <div class="resource-card">
+          <i class="fas fa-palette"></i>
+          <h3>Brand Guidelines</h3>
+          <p>Download logos and brand assets for your use</p>
+          <a href="#" class="btn-outline">Download Assets</a>
+        </div>
+        <div class="resource-card">
+          <i class="fas fa-calendar-alt"></i>
+          <h3>Partner Events</h3>
+          <p>Upcoming events and networking opportunities</p>
+          <a href="#" class="btn-outline">View Events</a>
+        </div>
+        <div class="resource-card">
+          <i class="fas fa-file-alt"></i>
+          <h3>Templates & Forms</h3>
+          <p>Project proposals, MOUs, and reporting templates</p>
+          <a href="#" class="btn-outline">Download</a>
+        </div>
+        <div class="resource-card">
+          <i class="fas fa-video"></i>
+          <h3>Training Videos</h3>
+          <p>Platform tutorials and best practices</p>
+          <a href="#" class="btn-outline">Watch Videos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="card success-stories-section">
+      <h2><i class="fas fa-trophy"></i> Partnership Success Stories</h2>
+      <div class="stories-grid">
+        <div class="story-card">
+          <div class="story-image">
+            <i class="fas fa-landmark"></i>
+          </div>
+          <div class="story-content">
+            <h3>Kirinyaga County Government Partnership</h3>
+            <p class="story-outcome">Outcome: 45% reduction in illegal dumping in partnership areas</p>
+            <p>"Through our partnership with Eco-Mali Exchange Limited, we've been able to digitize waste management and
+              engage youth meaningfully."</p>
+            <p class="story-quote">— County Environment Director</p>
+          </div>
+        </div>
+
+        <div class="story-card">
+          <div class="story-image">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <div class="story-content">
+            <h3>Safaricom Digital Innovation Partnership</h3>
+            <p class="story-outcome">Outcome: 5,000+ digital waste transactions processed</p>
+            <p>"Integrating M-Pesa with the Eco-Mali platform has created a seamless payment system for waste collectors
+              and recyclers."</p>
+            <p class="story-quote">— Safaricom CSR Manager</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- My Projects -->
+    <section class="card my-projects-section">
+      <div class="card-header">
+        <h2><i class="fas fa-project-diagram"></i> My Partnership Projects</h2>
+        <button class="btn-primary" onclick="openNewProjectModal()">
+          <i class="fas fa-plus"></i> New Project
+        </button>
+      </div>
+      <div class="projects-container" id="projectsContainer">
+        <div class="empty-state">
+          <i class="fas fa-project-diagram"></i>
+          <p>No active projects</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Support -->
+    <section class="card contact-support">
+      <h2><i class="fas fa-headset"></i> Partner Support</h2>
+      <div class="support-grid">
+        <div class="support-card">
+          <i class="fas fa-envelope"></i>
+          <h3>Email Support</h3>
+          <p>partnerships@ecomaliexchange.co.ke</p>
+          <a href="mailto:partnerships@ecomaliexchange.co.ke" class="btn-outline">Send Email</a>
+        </div>
+        <div class="support-card">
+          <i class="fas fa-phone"></i>
+          <h3>Phone Support</h3>
+          <p>+254 797 240 399</p>
+          <a href="tel:+254 797 240 399" class="btn-outline">Call Now</a>
+        </div>
+        <div class="support-card">
+          <i class="fas fa-clock"></i>
+          <h3>Office Hours</h3>
+          <p>Mon-Fri: 8:00 AM - 5:00 PM</p>
+          <p>Sat: 9:00 AM - 1:00 PM</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="admin-footer">&copy; 2025 Eco-Mali Exchange Limited</footer>
+
+  <script src="../../js/api.js"></script>
+  <script src="../../js/session.js"></script>
+  <script src="../../js/eco-points.js"></script>
+  <script src="../../js/partners-dashboard.js"></script>
+  <script src="../../js/responsive-admin.js"></script>
+</body>
+
+</html>

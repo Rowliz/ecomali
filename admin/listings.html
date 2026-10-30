@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Manage Listings — Eco-Mali Exchange Limited</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div
+    data-protect="admin,super_admin,moderator,operations_admin,finance_admin,compliance_admin,support_admin,tech_admin">
+  </div>
+
+  <header class="admin-header">
+    <div class="container">
+      <div class="brand">
+        <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+        <img src="../images/logo.png" alt="Eco-Mali Exchange Limited Logo">
+        <h1>Admin Dashboard</h1>
+      </div>
+      <nav class="admin-nav">
+        <a href="dashboard.html">Overview</a>
+        <a href="listings.html" class="active" data-permission="listings:approve">Listings</a>
+        <a href="users.html" data-permission="users:read">Users</a>
+        <a href="reports.html" data-permission="reports:read">Reports</a>
+        <a href="settings.html" data-permission="settings:update">Settings</a>
+        <a href="#" data-logout class="btn-logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-main container">
+    <div class="page-header">
+      <h1><i class="fas fa-box"></i> Manage Listings</h1>
+      <div class="page-actions">
+        <select id="statusFilter" class="filter-select" onchange="filterListings()">
+          <option value="all">All Status</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="active">Active</option>
+          <option value="sold">Sold</option>
+          <option value="rejected">Rejected</option>
+        </select>
+        <input type="text" id="searchListings" class="search-input" placeholder="Search listings..."
+          oninput="filterListings()">
+      </div>
+    </div>
+
+    <!-- Listings Table -->
+    <section class="card full">
+      <div class="card-header">
+        <h2>All Listings</h2>
+        <div class="card-actions">
+          <span id="listingsCount" class="badge">0 listings</span>
+        </div>
+      </div>
+      <div class="table-container">
+        <table class="table" id="listingsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Generator</th>
+              <th>Waste Type</th>
+              <th>Quality</th>
+              <th>Amount (kg)</th>
+              <th>Price (KES/kg)</th>
+              <th>Total Value</th>
+              <th>Location</th>
+              <th>Status</th>
+              <th>Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="listingsBody">
+            <tr>
+              <td colspan="11" class="text-center">Loading listings...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination" id="pagination">
+        <!-- Pagination will be inserted here -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="admin-footer">
+    <div class="container">
+      <p>&copy; 2025 Eco-Mali Exchange Limited. All rights reserved.</p>
+      <p class="text-muted">Admin Portal - Restricted Access</p>
+    </div>
+  </footer>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/session.js"></script>
+  <script src="../js/admin-listings.js"></script>
+  <script src="../js/responsive-admin.js"></script>
+</body>
+
+</html>

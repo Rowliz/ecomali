@@ -1,0 +1,11 @@
+/* User menu styles */
+.nav-actions{margin-left:auto;display:flex;align-items:center;gap:12px}
+.user-menu{position:relative;font-family:inherit}
+.user-menu-btn{background:transparent;border:1px solid #e6e9ef;padding:8px 10px;border-radius:8px;cursor:pointer}
+.user-menu-dropdown{position:absolute;right:0;top:calc(100% + 8px);background:#fff;border-radius:8px;box-shadow:0 8px 24px rgba(2,6,23,0.08);min-width:180px;padding:10px;display:none;z-index:40}
+.user-menu-dropdown.open, .user-menu-dropdown.open{display:block}
+.user-menu-dropdown a{display:block;padding:8px 10px;color:#0b63d6;text-decoration:none;border-radius:6px}
+.user-menu-dropdown a:hover{background:#f3f4f6}
+.user-info{padding:6px 10px;border-bottom:1px solid #f1f5f9;margin-bottom:8px}
+.user-info .muted{color:#6b7280;font-size:0.9rem}
+.caret{font-size:0.8rem;margin-left:6px}

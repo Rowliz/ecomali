@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://r2cdn.perplexity.ai; img-src 'self' data: https:; connect-src 'self' https://eco-mali.onrender.com https://cdn.jsdelivr.net;">
+  <title>Waste Generator Dashboard — Eco-Mali Exchange</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/admin.css">
+  <link rel="stylesheet" href="../../css/generator-dashboard.css">
+  <link rel="stylesheet" href="../../css/wallet.css">
+  <link rel="stylesheet" href="../../css/eco-points.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div data-protect="generator,member"></div>
+
+  <!-- Header -->
+  <header class="admin-header container">
+    <div class="brand">
+      <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+      <img src="../../images/logo.png" alt="Eco-Mali">
+      <h1>Waste Generator Portal</h1>
+    </div>
+    <div class="nav-actions">
+      <a href="../../index.html" class="btn-ghost"><i class="fas fa-home"></i> Home</a>
+      <a href="../../profile.html" class="btn-ghost"><i class="fas fa-user-circle"></i> Profile</a>
+      <a href="#" data-logout class="btn-ghost"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+    <!-- Wallet Widget -->
+    <div id="walletWidget"></div>
+
+    <!-- Eco Points Widget -->
+    <div id="ecoPointsWidget"></div>
+
+    <!-- Dashboard Stats -->
+    <section class="dashboard-stats">
+      <div class="stat-card">
+        <div class="stat-icon success">
+          <i class="fas fa-box"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="totalListings">0</h3>
+          <p>Total Listings</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon warning">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="pendingListings">0</h3>
+          <p>Pending Approval</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon primary">
+          <i class="fas fa-hand-holding-usd"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="totalEarnings">KES 0</h3>
+          <p>Total Earnings</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon info">
+          <i class="fas fa-gavel"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="activeBids">0</h3>
+          <p>Active Bids</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="card quick-actions-section">
+      <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+      <div class="quick-actions-grid">
+        <button class="quick-action-btn" onclick="openWasteForm()">
+          <i class="fas fa-plus-circle"></i>
+          <span>List New Waste</span>
+        </button>
+        <button class="quick-action-btn" onclick="viewMyListings()">
+          <i class="fas fa-list"></i>
+          <span>My Listings</span>
+        </button>
+        <button class="quick-action-btn" onclick="viewBids()">
+          <i class="fas fa-gavel"></i>
+          <span>View Bids</span>
+        </button>
+        <button class="quick-action-btn" onclick="viewTransactions()">
+          <i class="fas fa-receipt"></i>
+          <span>Transactions</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Waste Listing Form Modal -->
+    <div id="wasteFormModal" class="modal">
+      <div class="modal-content large">
+        <div class="modal-header">
+          <h3><i class="fas fa-box"></i> List New Waste</h3>
+          <button class="modal-close" onclick="closeWasteForm()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="wasteListingForm">
+            <div class="form-section">
+              <h4><i class="fas fa-info-circle"></i> Waste Information</h4>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="wasteType">Waste Type *</label>
+                  <select id="wasteType" name="wasteType" required>
+                    <option value="">Select waste type</option>
+                    <option value="plastic">Plastic</option>
+                    <option value="paper">Paper</option>
+                    <option value="metal">Metal</option>
+                    <option value="glass">Glass</option>
+                    <option value="organic">Organic Waste</option>
+                    <option value="electronic">Electronic Waste</option>
+                    <option value="textile">Textile</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-field">
+                  <label for="wasteQuality">Quality *</label>
+                  <select id="wasteQuality" name="wasteQuality" required>
+                    <option value="">Select quality</option>
+                    <option value="excellent">Excellent (Clean, sorted)</option>
+                    <option value="good">Good (Mostly clean)</option>
+                    <option value="fair">Fair (Some contamination)</option>
+                    <option value="poor">Poor (Heavy contamination)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="amountKg">Amount (kg) *</label>
+                  <input type="number" id="amountKg" name="amountKg" min="1" step="0.1" required placeholder="e.g., 50">
+                </div>
+                <div class="form-field">
+                  <label for="biddingPrice">Bidding Price (KES per kg) *</label>
+                  <input type="number" id="biddingPrice" name="biddingPrice" min="1" step="0.1" required
+                    placeholder="e.g., 25">
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="location">Location *</label>
+                <input type="text" id="location" name="location" required placeholder="Street address, area, city">
+                <small><i class="fas fa-map-marker-alt"></i> Be specific for easy pickup</small>
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="latitude">Latitude (Optional)</label>
+                  <input type="number" id="latitude" name="latitude" step="any" placeholder="e.g., -0.5142">
+                </div>
+                <div class="form-field">
+                  <label for="longitude">Longitude (Optional)</label>
+                  <input type="number" id="longitude" name="longitude" step="any" placeholder="e.g., 37.2808">
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" rows="3"
+                  placeholder="Additional details about the waste..."></textarea>
+              </div>
+
+              <div class="form-field">
+                <label for="pickupDate">Preferred Pickup Date</label>
+                <input type="date" id="pickupDate" name="pickupDate" min="">
+              </div>
+
+              <div class="form-field">
+                <label for="images">Upload Images (Optional)</label>
+                <input type="file" id="images" name="images" multiple accept="image/*">
+                <small>Upload up to 5 images of the waste</small>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h4><i class="fas fa-calculator"></i> Pricing Summary</h4>
+              <div class="pricing-summary">
+                <div class="price-row">
+                  <span>Total Amount:</span>
+                  <span id="totalAmountDisplay">0 kg</span>
+                </div>
+                <div class="price-row">
+                  <span>Price per kg:</span>
+                  <span id="pricePerKgDisplay">KES 0</span>
+                </div>
+                <div class="price-row">
+                  <span>Total Value:</span>
+                  <strong id="totalValueDisplay">KES 0</strong>
+                </div>
+                <div class="price-row commission">
+                  <span>Platform Commission (5-8%):</span>
+                  <strong id="commissionDisplay">KES 0</strong>
+                </div>
+                <div class="price-row total">
+                  <span>Your Earnings:</span>
+                  <strong id="yourEarningsDisplay">KES 0</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">
+                <i class="fas fa-paper-plane"></i> Submit for Approval
+              </button>
+              <button type="button" class="btn-secondary" onclick="closeWasteForm()">
+                <i class="fas fa-times"></i> Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Listings Section -->
+    <section class="card" id="listingsSection">
+      <div class="card-header">
+        <h2><i class="fas fa-list"></i> My Waste Listings</h2>
+        <div class="card-actions">
+          <select id="listingFilter" onchange="filterListings()">
+            <option value="all">All Listings</option>
+            <option value="pending">Pending Approval</option>
+            <option value="approved">Approved</option>
+            <option value="sold">Sold</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+      </div>
+      <div class="listings-container" id="listingsContainer">
+        <div class="loading-state">
+          <i class="fas fa-spinner fa-spin"></i>
+          <p>Loading your listings...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bids Section -->
+    <section class="card" id="bidsSection">
+      <div class="card-header">
+        <h2><i class="fas fa-gavel"></i> Received Bids</h2>
+      </div>
+      <div class="bids-container" id="bidsContainer">
+        <div class="empty-state">
+          <i class="fas fa-gavel"></i>
+          <p>No bids received yet</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Transactions Section -->
+    <section class="card" id="transactionsSection">
+      <div class="card-header">
+        <h2><i class="fas fa-receipt"></i> Transaction History</h2>
+      </div>
+      <div class="transactions-container" id="transactionsContainer">
+        <div class="empty-state">
+          <i class="fas fa-receipt"></i>
+          <p>No transactions yet</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="admin-footer">&copy; 2025 Eco-Mali Exchange Limited</footer>
+
+  <script src="../../js/api.js"></script>
+  <script src="../../js/session.js"></script>
+  <script src="../../js/wallet.js"></script>
+  <script src="../../js/eco-points.js"></script>
+  <script src="../../js/generator-dashboard.js"></script>
+  <script src="../../js/responsive-admin.js"></script>
+</body>
+
+</html>

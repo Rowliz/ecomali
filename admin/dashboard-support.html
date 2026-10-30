@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://r2cdn.perplexity.ai; img-src 'self' data: https:; connect-src 'self' https://eco-mali.onrender.com https://cdn.jsdelivr.net;">
+    <title>Support Dashboard — Eco-Mali Exchange</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div data-protect="support_admin,super_admin,admin"></div>
+
+    <header class="admin-header">
+        <div class="container">
+            <div class="brand">
+                <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+                <img src="../images/logo.png" alt="Eco-Mali Logo">
+                <h1>Support Portal</h1>
+            </div>
+            <nav class="admin-nav">
+                <a href="dashboard-support.html" class="active">Overview</a>
+                <a href="users.html">User Management</a>
+                <a href="../profile.html"><i class="fas fa-user-circle"></i> Profile</a>
+                <a href="#" data-logout class="btn-logout"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="admin-main container">
+        <section class="dashboard-greeting card" style="margin-bottom: 2rem; border-left: 5px solid #9C27B0;">
+            <h2 id="dashboardGreeting">Customer Support</h2>
+            <p>Assist users, resolve inquiries, and manage accounts.</p>
+        </section>
+
+        <!-- Stats Row -->
+        <section class="dashboard-stats">
+            <div class="stat-card">
+                <div class="stat-icon info">
+                    <i class="fas fa-ticket-alt"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="openTickets">0</h3>
+                    <p>Open Inquiries</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon primary">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="activeUsers">0</h3>
+                    <p>Active Users</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon success">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="resolvedToday">0</h3>
+                    <p>Resolved Today</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Lookup -->
+        <section class="card full">
+            <div class="card-header">
+                <h2><i class="fas fa-search"></i> Quick User Lookup</h2>
+            </div>
+            <div class="form-group" style="padding: 1rem;">
+                <input type="text" id="userSearchInput" placeholder="Enter email, name, or phone number..."
+                    style="width: 100%; padding: 10px;">
+                <button id="searchBtn" class="btn primary" style="margin-top: 1rem;">Search User</button>
+            </div>
+            <div id="searchResults" style="padding: 0 1rem 1rem 1rem;">
+                <!-- Results injected here -->
+            </div>
+        </section>
+
+        <!-- Recent Users -->
+        <section class="card full">
+            <div class="card-header">
+                <h2><i class="fas fa-clock"></i> Recently Active Users</h2>
+                <a href="users.html" class="btn-small">View All</a>
+            </div>
+            <div class="table-container">
+                <table class="table" id="recentUsersTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentUsersBody">
+                        <tr>
+                            <td colspan="4" class="text-center">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="admin-footer">
+        <div class="container">
+            <p>&copy; 2025 Eco-Mali Exchange Limited.</p>
+        </div>
+    </footer>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/session.js"></script>
+    <script src="../js/dashboard-support.js"></script>
+    <script src="../js/responsive-admin.js"></script>
+</body>
+
+</html>

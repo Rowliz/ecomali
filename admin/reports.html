@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Reports - Eco-Mali Exchange</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/admin-reports.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="admin-page"
+  data-protect="admin,super_admin,moderator,operations_admin,finance_admin,compliance_admin,support_admin,tech_admin">
+  <header class="admin-header">
+    <div class="container">
+      <div class="brand">
+        <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+        <img src="../images/logo.png" alt="Eco-Mali Exchange Limited Logo">
+        <h1>Admin Dashboard</h1>
+      </div>
+      <nav class="admin-nav">
+        <a href="dashboard.html">Overview</a>
+        <a href="listings.html" data-permission="listings:approve">Listings</a>
+        <a href="users.html" data-permission="users:read">Users</a>
+        <a href="wallet-transactions.html" data-permission="transactions:read">Wallet</a>
+        <a href="reports.html" class="active" data-permission="reports:read">Reports</a>
+        <a href="dump-reports.html" data-permission="reports:read">Dump Sites</a>
+        <a href="settings.html" data-permission="settings:update">Settings</a>
+      </nav>
+      <div class="nav-actions">
+        <span class="chip"><i class="fas fa-shield-alt"></i> Admin</span>
+        <a href="../profile.html"><i class="fas fa-user-circle"></i> Profile</a>
+        <a href="/"><i class="fas fa-home"></i> Back to Site</a>
+        <a href="#" data-logout class="btn-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main container">
+    <div class="page-header">
+      <h1>Reports</h1>
+      <p class="page-subtitle">Overview metrics and trends</p>
+    </div>
+
+    <div class="filters-section">
+      <div class="filter-group">
+        <label for="rangeDays">Range:</label>
+        <select id="rangeDays">
+          <option value="7">7 days</option>
+          <option value="30" selected>30 days</option>
+          <option value="90">90 days</option>
+          <option value="180">180 days</option>
+        </select>
+      </div>
+      <button id="refreshReports" class="btn-primary"><i class="fas fa-sync"></i> Refresh</button>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+        <div class="stat-details">
+          <span class="stat-value" id="totalUsers">0</span>
+          <span class="stat-label">Total Users</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon orange"><i class="fas fa-list"></i></div>
+        <div class="stat-details">
+          <span class="stat-value" id="totalListings">0</span>
+          <span class="stat-label">Total Listings</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon green"><i class="fas fa-file-invoice-dollar"></i></div>
+        <div class="stat-details">
+          <span class="stat-value" id="totalTransactions">0</span>
+          <span class="stat-label">Transactions</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon purple"><i class="fas fa-coins"></i></div>
+        <div class="stat-details">
+          <span class="stat-value" id="totalAmount">0</span>
+          <span class="stat-label">Total Amount</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h3><i class="fas fa-user-plus"></i> User Signups</h3>
+        <canvas id="usersChart" height="120"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3><i class="fas fa-dumpster"></i> Listings Created</h3>
+        <canvas id="listingsChart" height="120"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3><i class="fas fa-money-bill-wave"></i> Transaction Amount</h3>
+        <canvas id="amountChart" height="120"></canvas>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/session.js"></script>
+  <script src="../js/admin-reports.js"></script>
+  <script src="../js/responsive-admin.js"></script>
+</body>
+
+</html>

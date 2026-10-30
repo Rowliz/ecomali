@@ -1,0 +1,396 @@
+/* About Page Specific Styles */
+
+/* About Hero */
+.about-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)), 
+                url('../images/about-hero.jpg') center/cover;
+    color: white;
+    padding: 180px 0 100px;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.about-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Vision Mission Values */
+.vision-mission {
+    padding: 5rem 0;
+    background-color: #f8f9fa;
+}
+
+.vm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.vm-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.vm-card:hover {
+    transform: translateY(-5px);
+}
+
+.vm-card i {
+    font-size: 3rem;
+    color: #2E7D32;
+    margin-bottom: 1.5rem;
+}
+
+.vm-card h2 {
+    color: #2E7D32;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.vm-card ul {
+    list-style: none;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.vm-card ul li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.vm-card ul li:last-child {
+    border-bottom: none;
+}
+
+.vm-card ul li::before {
+    content: "✓";
+    color: #2E7D32;
+    font-weight: bold;
+    margin-right: 10px;
+}
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   backend/controllers/authController.js
+        modified:   backend/server.js
+        modified:   contact.html
+        new file:   git
+        new file:   images/logo.png
+        modified:   js/auth.js
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   about.html
+        modified:   backend/server.js
+        modified:   certifications-compliance.html
+        modified:   contact.html
+        modified:   future-expansion.html
+        modified:   images/logo.png
+        modified:   impact.html
+        modified:   index.html
+        modified:   js/contact.js
+        modified:   platform.html
+        modified:   portal/partners/dashboard.html
+        modified:   privacy-policy.html
+        modified:   services.html
+        modified:   terms-of-service.html
+
+
+C:\Users\ibrah\eco-mali-exchange>Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   backend/controllers/authController.js
+        modified:   backend/server.js
+        modified:   contact.html
+        new file:   git
+        new file:   images/logo.png
+        modified:   js/auth.js
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   about.html
+        modified:   backend/server.js
+        modified:   certifications-compliance.html
+        modified:   contact.html
+        modified:   future-expansion.html
+        modified:   images/logo.png
+        modified:   impact.html
+        modified:   index.html
+        modified:   js/contact.js
+        modified:   platform.html
+        modified:   portal/partners/dashboard.html
+        modified:   privacy-policy.html
+        modified:   services.html
+        modified:   terms-of-service.html
+
+
+C:\Users\ibrah\eco-mali-exchange>Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   backend/controllers/authController.js
+        modified:   backend/server.js
+        modified:   contact.html
+        new file:   git
+        new file:   images/logo.png
+        modified:   js/auth.js
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   about.html
+        modified:   backend/server.js
+        modified:   certifications-compliance.html
+        modified:   contact.html
+        modified:   future-expansion.html
+        modified:   images/logo.png
+        modified:   impact.html
+        modified:   index.html
+        modified:   js/contact.js
+        modified:   platform.html
+        modified:   portal/partners/dashboard.html
+        modified:   privacy-policy.html
+        modified:   services.html
+        modified:   terms-of-service.html
+
+
+C:\Users\ibrah\eco-mali-exchange>Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   backend/controllers/authController.js
+        modified:   backend/server.js
+        modified:   contact.html
+        new file:   git
+        new file:   images/logo.png
+        modified:   js/auth.js
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   about.html
+        modified:   backend/server.js
+        modified:   certifications-compliance.html
+        modified:   contact.html
+        modified:   future-expansion.html
+        modified:   images/logo.png
+        modified:   impact.html
+        modified:   index.html
+        modified:   js/contact.js
+        modified:   platform.html
+        modified:   portal/partners/dashboard.html
+        modified:   privacy-policy.html
+        modified:   services.html
+        modified:   terms-of-service.html
+
+
+C:\Users\ibrah\eco-mali-exchange>Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   backend/controllers/authController.js
+        modified:   backend/server.js
+        modified:   contact.html
+        new file:   git
+        new file:   images/logo.png
+        modified:   js/auth.js
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   about.html
+        modified:   backend/server.js
+        modified:   certifications-compliance.html
+        modified:   contact.html
+        modified:   future-expansion.html
+        modified:   images/logo.png
+        modified:   impact.html
+        modified:   index.html
+        modified:   js/contact.js
+        modified:   platform.html
+        modified:   portal/partners/dashboard.html
+        modified:   privacy-policy.html
+        modified:   services.html
+        modified:   terms-of-service.html
+
+/* Our Story */
+.our-story {
+    padding: 5rem 0;
+}
+
+.our-story h2 {
+    text-align: center;
+    color: #2E7D32;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+.story-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.story-text p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.story-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Leadership Team */
+.leadership {
+    padding: 5rem 0;
+    background-color: #f8f9fa;
+}
+
+.leadership h2 {
+    text-align: center;
+    color: #2E7D32;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.team-member {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    text-align: center;
+    padding: 2rem;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.member-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1.5rem;
+    border: 5px solid #f0f0f0;
+}
+
+.member-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-member h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.position {
+    color: #2E7D32;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.bio {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* What Makes Us Different */
+.different {
+    padding: 5rem 0;
+}
+
+.different h2 {
+    text-align: center;
+    color: #2E7D32;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+.diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.diff-card {
+    text-align: center;
+    padding: 2rem;
+}
+
+.diff-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #2E7D32, #4CAF50);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.diff-icon i {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.diff-card h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.diff-card p {
+    color: #b14a4a;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .story-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .team-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .vm-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .diff-grid {
+        grid-template-columns: 1fr;
+    }
+}

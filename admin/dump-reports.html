@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dump Site Reports - Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/wallet-admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .report-image {
+            max-width: 60px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .report-images {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .severity-badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .severity-low {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .severity-medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .severity-high {
+            background: #fed7aa;
+            color: #9a3412;
+        }
+
+        .severity-critical {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .report-details {
+            margin-top: 1rem;
+        }
+
+        .report-details h3 {
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .detail-row {
+            display: flex;
+            margin-bottom: 0.75rem;
+            gap: 0.5rem;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #4b5563;
+            min-width: 120px;
+        }
+
+        .detail-value {
+            color: #1f2937;
+        }
+
+        .notes-section {
+            margin-top: 1.5rem;
+        }
+
+        .notes-textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .modal-actions {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body
+    data-protect="admin,super_admin,moderator,operations_admin,finance_admin,compliance_admin,support_admin,tech_admin">
+    <div class="admin-container">
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="container">
+                    <div class="brand">
+                        <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+                        <h1><i class="fas fa-exclamation-triangle" style="color:#f59e0b"></i> Dump Site Reports</h1>
+                        <span class="chip">Admin</span>
+                    </div>
+                    <nav class="admin-nav">
+                        <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+                        <a href="users.html" data-permission="users:read"><i class="fas fa-users"></i> Users</a>
+                        <a href="listings.html" data-permission="listings:approve"><i class="fas fa-list"></i>
+                            Listings</a>
+                        <a href="reports.html" data-permission="reports:read"><i class="fas fa-file-alt"></i>
+                            Reports</a>
+                        <a href="dump-reports.html" class="active" data-permission="reports:read"><i
+                                class="fas fa-exclamation-triangle"></i> Dump
+                            Sites</a>
+                        <a href="wallet-transactions.html" data-permission="transactions:read"><i
+                                class="fas fa-wallet"></i> Wallet</a>
+                        <a href="settings.html" data-permission="settings:update"><i class="fas fa-cog"></i>
+                            Settings</a>
+                    </nav>
+                    <div class="nav-actions">
+                        <a href="profile.html" class="nav-link">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
+                        <a href="/" class="nav-link">
+                            <i class="fas fa-home"></i> Back to Site
+                        </a>
+                        <button id="logoutBtn" class="btn-logout">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #dbeafe;">
+                        <i class="fas fa-clipboard-list" style="color: #1e40af;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p class="stat-label">Total Reports</p>
+                        <p class="stat-value" id="totalReports">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fef3c7;">
+                        <i class="fas fa-clock" style="color: #92400e;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p class="stat-label">Pending</p>
+                        <p class="stat-value" id="pendingReports">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #dbeafe;">
+                        <i class="fas fa-search" style="color: #1e40af;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p class="stat-label">Investigating</p>
+                        <p class="stat-value" id="investigatingReports">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #d1fae5;">
+                        <i class="fas fa-check-circle" style="color: #065f46;"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p class="stat-label">Resolved</p>
+                        <p class="stat-value" id="resolvedReports">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-card">
+                <div class="filter-group">
+                    <label for="statusFilter">Status:</label>
+                    <select id="statusFilter" class="filter-select">
+                        <option value="">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="investigating">Investigating</option>
+                        <option value="resolved">Resolved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="severityFilter">Severity:</label>
+                    <select id="severityFilter" class="filter-select">
+                        <option value="">All Severities</option>
+                        <option value="critical">Critical</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="countyFilter">County:</label>
+                    <select id="countyFilter" class="filter-select">
+                        <option value="">All Counties</option>
+                        <option value="Kirinyaga">Kirinyaga</option>
+                        <option value="Nairobi">Nairobi</option>
+                        <option value="Mombasa">Mombasa</option>
+                        <option value="Kisumu">Kisumu</option>
+                        <option value="Nakuru">Nakuru</option>
+                        <option value="Kiambu">Kiambu</option>
+                        <option value="Machakos">Machakos</option>
+                    </select>
+                </div>
+                <button id="applyFilters" class="btn-primary">
+                    <i class="fas fa-filter"></i> Apply Filters
+                </button>
+                <button id="resetFilters" class="btn-secondary">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+
+            <!-- Reports Table -->
+            <div class="table-card">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>County</th>
+                            <th>Waste Type</th>
+                            <th>Severity</th>
+                            <th>Status</th>
+                            <th>Reporter</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportsTableBody">
+                        <tr>
+                            <td colspan="8" style="text-align: center; padding: 2rem;">
+                                <i class="fas fa-spinner fa-spin"></i> Loading reports...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination" style="display: none;">
+                <button id="prevPage" class="btn-secondary" disabled>
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <span id="pageInfo">Page 1</span>
+                <button id="nextPage" class="btn-secondary">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Report Details Modal -->
+    <div id="reportModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="../js/session.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/responsive-admin.js"></script>
+    <script>
+        let currentPage = 1;
+        let currentFilters = {};
+        const limit = 20;
+
+        // Load stats
+        async function loadStats() {
+            try {
+                const data = await api.get('/admin/dump-reports/stats');
+                document.getElementById('totalReports').textContent = data.total || 0;
+                document.getElementById('pendingReports').textContent = data.pending || 0;
+                document.getElementById('investigatingReports').textContent = data.investigating || 0;
+                document.getElementById('resolvedReports').textContent = data.resolved || 0;
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Load reports
+        async function loadReports() {
+            try {
+                const skip = (currentPage - 1) * limit;
+                const params = new URLSearchParams({
+                    ...currentFilters,
+                    limit,
+                    skip
+                });
+
+                const data = await api.get(`/admin/dump-reports?${params}`);
+                displayReports(data.reports || []);
+
+                // Update pagination
+                const totalPages = Math.ceil(data.total / limit);
+                document.getElementById('pageInfo').textContent =
+                    `Page ${currentPage} of ${totalPages || 1}`;
+                document.getElementById('prevPage').disabled = currentPage === 1;
+                document.getElementById('nextPage').disabled = currentPage >= totalPages;
+                document.getElementById('pagination').style.display =
+                    data.total > limit ? 'flex' : 'none';
+            } catch (error) {
+                console.error('Error loading reports:', error);
+                document.getElementById('reportsTableBody').innerHTML =
+                    '<tr><td colspan="8" style="text-align: center; color: #ef4444;">Error loading reports</td></tr>';
+            }
+        }
+
+        // Display reports in table
+        function displayReports(reports) {
+            const tbody = document.getElementById('reportsTableBody');
+
+            if (!reports.length) {
+                tbody.innerHTML =
+                    '<tr><td colspan="8" style="text-align: center; padding: 2rem;">No reports found</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = reports.map(report => `
+                <tr>
+                    <td>${new Date(report.createdAt).toLocaleDateString()}</td>
+                    <td>${report.location}</td>
+                    <td>${report.county}</td>
+                    <td>${report.wasteType}</td>
+                    <td>
+                        <span class="severity-badge severity-${report.severity}">
+                            ${report.severity}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="status-badge status-${report.status}">
+                            ${report.status}
+                        </span>
+                    </td>
+                    <td>${report.reporterName || report.reporterEmail || 'Anonymous'}</td>
+                    <td>
+                        <button class="btn-action" onclick="viewReport('${report._id}')">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // View report details
+        async function viewReport(reportId) {
+            try {
+                const data = await api.get('/admin/dump-reports');
+                const report = data.reports.find(r => r._id === reportId);
+
+                if (!report) {
+                    alert('Report not found');
+                    return;
+                }
+
+                const images = report.imageUrls && report.imageUrls.length
+                    ? report.imageUrls.map(url => `
+                        <img src="${url}" class="modal-image" alt="Dump site photo">
+                    `).join('')
+                    : '<p style="color: #6b7280;">No images uploaded</p>';
+
+                document.getElementById('modalBody').innerHTML = `
+                    <h3>Report Details</h3>
+                    ${images}
+                    <div class="report-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Location:</span>
+                            <span class="detail-value">${report.location}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">County:</span>
+                            <span class="detail-value">${report.county}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Waste Type:</span>
+                            <span class="detail-value">${report.wasteType}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Severity:</span>
+                            <span class="severity-badge severity-${report.severity}">${report.severity}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Status:</span>
+                            <span class="status-badge status-${report.status}">${report.status}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Reporter:</span>
+                            <span class="detail-value">${report.reporterName || 'Anonymous'}</span>
+                        </div>
+                        ${report.reporterEmail ? `
+                            <div class="detail-row">
+                                <span class="detail-label">Email:</span>
+                                <span class="detail-value">${report.reporterEmail}</span>
+                            </div>
+                        ` : ''}
+                        ${report.reporterPhone ? `
+                            <div class="detail-row">
+                                <span class="detail-label">Phone:</span>
+                                <span class="detail-value">${report.reporterPhone}</span>
+                            </div>
+                        ` : ''}
+                        <div class="detail-row">
+                            <span class="detail-label">Description:</span>
+                            <span class="detail-value">${report.description}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Reported:</span>
+                            <span class="detail-value">${new Date(report.createdAt).toLocaleString()}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="notes-section">
+                        <label class="detail-label">Admin Notes:</label>
+                        <textarea id="reportNotes" class="notes-textarea">${report.notes || ''}</textarea>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button class="btn-primary" onclick="updateReportStatus('${report._id}', 'investigating')">
+                            <i class="fas fa-search"></i> Mark Investigating
+                        </button>
+                        <button class="btn-success" onclick="updateReportStatus('${report._id}', 'resolved')">
+                            <i class="fas fa-check"></i> Mark Resolved
+                        </button>
+                        <button class="btn-danger" onclick="updateReportStatus('${report._id}', 'rejected')">
+                            <i class="fas fa-times"></i> Reject
+                        </button>
+                        <button class="btn-secondary" onclick="closeModal()">
+                            Close
+                        </button>
+                    </div>
+                `;
+
+                document.getElementById('reportModal').classList.add('active');
+            } catch (error) {
+                console.error('Error viewing report:', error);
+                alert('Failed to load report details');
+            }
+        }
+
+        // Update report status
+        async function updateReportStatus(reportId, status) {
+            try {
+                const notes = document.getElementById('reportNotes')?.value || '';
+
+                await api.patch(`/admin/dump-reports/${reportId}`, {
+                    status,
+                    notes
+                });
+
+                alert('Report updated successfully');
+                closeModal();
+                loadStats();
+                loadReports();
+            } catch (error) {
+                console.error('Error updating report:', error);
+                alert('Failed to update report');
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('reportModal').classList.remove('active');
+        }
+
+        // Apply filters
+        document.getElementById('applyFilters').addEventListener('click', () => {
+            currentFilters = {};
+            const status = document.getElementById('statusFilter').value;
+            const severity = document.getElementById('severityFilter').value;
+            const county = document.getElementById('countyFilter').value;
+
+            if (status) currentFilters.status = status;
+            if (severity) currentFilters.severity = severity;
+            if (county) currentFilters.county = county;
+
+            currentPage = 1;
+            loadReports();
+        });
+
+        // Reset filters
+        document.getElementById('resetFilters').addEventListener('click', () => {
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('severityFilter').value = '';
+            document.getElementById('countyFilter').value = '';
+            currentFilters = {};
+            currentPage = 1;
+            loadReports();
+        });
+
+        // Pagination
+        document.getElementById('prevPage').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                loadReports();
+            }
+        });
+
+        document.getElementById('nextPage').addEventListener('click', () => {
+            currentPage++;
+            loadReports();
+        });
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            session.logout();
+            window.location.href = '../auth.html';
+        });
+
+        // Initial load
+        loadStats();
+        loadReports();
+    </script>
+</body>
+
+</html>

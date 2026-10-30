@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Seller Dashboard — Eco-Mali Exchange Limited</title>
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <script defer src="../js/seller-dashboard.js"></script>
+</head>
+
+<body>
+  <div data-protect="recycler,partner,admin,super_admin,moderator"></div>
+  <header class="admin-header">
+    <div class="container">
+      <div class="brand">
+        <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+        <img src="../images/logo.png" alt="Eco-Mali Exchange Limited Logo">
+        <h1>Seller Dashboard</h1>
+      </div>
+      <nav class="admin-nav">
+        <a href="dashboard.html">Overview</a>
+        <a href="buyer-dashboard.html">Buyer</a>
+        <a href="seller-dashboard.html" class="active">Seller</a>
+        <a href="users.html">Users</a>
+        <a href="#" data-logout class="btn-logout">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-main container">
+    <section class="dashboard-widgets">
+      <div class="card stat">
+        <h3 id="totalSellers">—</h3>
+        <p>Total Sellers</p>
+      </div>
+      <div class="card stat">
+        <h3 id="openOffers">—</h3>
+        <p>Open Offers</p>
+      </div>
+      <div class="card stat">
+        <h3 id="monthlyVolume">—</h3>
+        <p>Monthly Volume (kg)</p>
+      </div>
+      <div class="card stat">
+        <h3 id="avgRating">—</h3>
+        <p>Average Rating</p>
+      </div>
+    </section>
+
+    <section class="card full">
+      <h2>Recent Seller Offers</h2>
+      <table class="table" id="offersTable">
+        <thead>
+          <tr>
+            <th>Offer ID</th>
+            <th>Seller</th>
+            <th>Type</th>
+            <th>Capacity (kg)</th>
+            <th>Price</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="two-col">
+      <div class="card">
+        <h2>Top Buyers (matched)</h2>
+        <ul id="topBuyers"></ul>
+      </div>
+      <div class="card">
+        <h2>Notifications</h2>
+        <ul id="notifications"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="admin-footer">
+    <div class="container">&copy; 2025 Eco-Mali Exchange Limited — Seller Dashboard</div>
+  </footer>
+  <link rel="stylesheet" href="/css/user-menu.css">
+  <script src="/js/api.js"></script>
+  <script src="/js/session.js"></script>
+  <script src="/js/user-menu.js"></script>
+  <script src="../js/responsive-admin.js"></script>
+</body>
+
+</html>

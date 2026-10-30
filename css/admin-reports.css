@@ -1,0 +1,119 @@
+/* Admin Reports Styles */
+
+/* Horizontal nav overrides for Reports page */
+.admin-layout {
+  display: block;
+}
+
+.admin-sidebar {
+  width: 100%;
+  border-right: none;
+  border-bottom: 1px solid #eee;
+  padding: 0.75rem 1rem;
+  background: white;
+}
+
+.admin-sidebar .admin-nav {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.admin-sidebar .admin-nav .nav-item {
+  margin-bottom: 0;
+  border-radius: 8px;
+}
+
+.admin-content {
+  padding: 1.5rem;
+}
+
+.filters-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.filter-group label {
+  font-weight: 600;
+  color: #333;
+}
+
+.filter-group select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.btn-primary {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #2E7D32;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-primary:hover { background: #1B5E20; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.25rem;
+}
+
+.stat-details .stat-value { font-size: 1.6rem; font-weight: 700; }
+.stat-details .stat-label { color: #666; font-size: 0.9rem; }
+
+.stat-icon.blue { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.stat-icon.orange { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.stat-icon.green { background: linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%); }
+.stat-icon.purple { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.chart-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 1rem;
+  max-height: 350px;
+}
+
+.chart-card h3 { margin: 0 0 0.75rem 0; font-size: 1rem; }
+
+.chart-card canvas {
+  max-height: 250px !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+@media (max-width: 768px) {
+  .filters-section { flex-direction: column; align-items: stretch; }
+  .btn-primary { width: 100%; }
+}

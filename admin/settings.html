@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Settings - Eco-Mali Exchange</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <link rel="stylesheet" href="../css/admin-settings.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="admin-page"
+  data-protect="admin,super_admin,moderator,operations_admin,finance_admin,compliance_admin,support_admin,tech_admin">
+  <header class="admin-header">
+    <div class="container">
+      <div class="brand">
+        <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+        <img src="../images/logo.png" alt="Eco-Mali Exchange Limited Logo">
+        <h1>Admin Dashboard</h1>
+      </div>
+      <nav class="admin-nav">
+        <a href="dashboard.html">Overview</a>
+        <a href="listings.html" data-permission="listings:approve">Listings</a>
+        <a href="users.html" data-permission="users:read">Users</a>
+        <a href="wallet-transactions.html" data-permission="transactions:read">Wallet</a>
+        <a href="reports.html" data-permission="reports:read">Reports</a>
+        <a href="dump-reports.html" data-permission="reports:read">Dump Sites</a>
+        <a href="settings.html" class="active" data-permission="settings:update">Settings</a>
+      </nav>
+      <div class="nav-actions">
+        <span class="chip"><i class="fas fa-shield-alt"></i> Admin</span>
+        <a href="../profile.html"><i class="fas fa-user-circle"></i> Profile</a>
+        <a href="/"><i class="fas fa-home"></i> Back to Site</a>
+        <a href="#" data-logout class="btn-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main container">
+    <div class="page-header">
+      <h1>Platform Settings</h1>
+      <p class="page-subtitle">Configure system-wide options and features</p>
+    </div>
+
+    <form id="settingsForm" class="settings-grid">
+      <section class="settings-card">
+        <div class="card-header">
+          <h2><i class="fas fa-sliders-h"></i> General</h2>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="platformName">Platform Name</label>
+            <input type="text" id="platformName" class="form-input" placeholder="Eco-Mali Exchange" required>
+          </div>
+          <div class="form-group">
+            <label for="supportEmail">Support Email</label>
+            <input type="email" id="supportEmail" class="form-input" placeholder="support@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="jwtExpiryDays">JWT Expiry (days)</label>
+            <input type="number" id="jwtExpiryDays" class="form-input" min="1" max="365" value="7" required>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings-card">
+        <div class="card-header">
+          <h2><i class="fas fa-shield-alt"></i> Security</h2>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="minLength">Minimum Password Length</label>
+            <input type="number" id="minLength" class="form-input" min="6" max="128" value="8">
+          </div>
+          <div class="form-toggle">
+            <label>Require a Number</label>
+            <label class="switch">
+              <input type="checkbox" id="requireNumber" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="form-toggle">
+            <label>Require Uppercase</label>
+            <label class="switch">
+              <input type="checkbox" id="requireUppercase">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="settings-card">
+        <div class="card-header">
+          <h2><i class="fas fa-plug"></i> Features</h2>
+        </div>
+        <div class="card-body">
+          <div class="form-toggle">
+            <label>Enable Partners Module</label>
+            <label class="switch">
+              <input type="checkbox" id="partnersEnabled" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="form-toggle">
+            <label>Enable Volunteers Module</label>
+            <label class="switch">
+              <input type="checkbox" id="volunteersEnabled" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <div class="settings-actions">
+        <button type="submit" class="btn-primary"><i class="fas fa-save"></i> Save Settings</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/session.js"></script>
+  <script src="../js/admin-settings.js"></script>
+  <script src="../js/responsive-admin.js"></script>
+</body>
+
+</html>

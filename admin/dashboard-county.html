@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://r2cdn.perplexity.ai; img-src 'self' data: https:; connect-src 'self' https://eco-mali.onrender.com https://cdn.jsdelivr.net;">
+    <title>County Dashboard — Eco-Mali Exchange</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div data-protect="county_admin,super_admin,admin"></div>
+
+    <header class="admin-header">
+        <div class="container">
+            <div class="brand">
+                <button id="sidebarToggle" class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+                <img src="../images/logo.png" alt="Eco-Mali Logo">
+                <h1>County Portal</h1>
+            </div>
+            <nav class="admin-nav">
+                <a href="dashboard-county.html" class="active">Overview</a>
+                <a href="users.html">Local Users</a>
+                <a href="dump-reports.html">Dump Reports</a>
+                <a href="listings.html">Listings</a>
+                <a href="../profile.html"><i class="fas fa-user-circle"></i> Profile</a>
+                <a href="#" data-logout class="btn-logout"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="admin-main container">
+        <section class="dashboard-greeting card" style="margin-bottom: 2rem; border-left: 5px solid #ff9800;">
+            <h2 id="countyTitle">County Dashboard</h2>
+            <p id="countySubtitle">Loading county data...</p>
+        </section>
+
+        <!-- Stats Row -->
+        <section class="dashboard-stats">
+            <div class="stat-card">
+                <div class="stat-icon primary">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="localUsersCount">0</h3>
+                    <p>Local Users</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="dumpReportsCount">0</h3>
+                    <p>Active Dump Reports</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon success">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3 id="activeListingsCount">0</h3>
+                    <p>Active Listings</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Urgent Dump Reports -->
+        <section class="card full">
+            <div class="card-header">
+                <h2><i class="fas fa-fire"></i> High Severity Reports</h2>
+                <a href="dump-reports.html?severity=critical" class="btn-small">View All</a>
+            </div>
+            <div class="table-container">
+                <table class="table" id="urgentReportsTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Severity</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="urgentReportsBody">
+                        <tr>
+                            <td colspan="5" class="text-center">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Local Listings -->
+        <section class="card full">
+            <div class="card-header">
+                <h2><i class="fas fa-box-open"></i> Recent Listings in your County</h2>
+                <a href="listings.html" class="btn-small">Manage Listings</a>
+            </div>
+            <div class="table-container">
+                <table class="table" id="localListingsTable">
+                    <thead>
+                        <tr>
+                            <th>Generator</th>
+                            <th>Waste Type</th>
+                            <th>Amount</th>
+                            <th>Location</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="localListingsBody">
+                        <tr>
+                            <td colspan="5" class="text-center">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="admin-footer">
+        <div class="container">
+            <p>&copy; 2025 Eco-Mali Exchange Limited.</p>
+        </div>
+    </footer>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/session.js"></script>
+    <script src="../js/dashboard-county.js"></script>
+    <script src="../js/responsive-admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,461 @@
+/* Legal Pages Styles (Terms, Privacy, Certifications, Future Expansion) */
+
+/* Hero Section */
+.legal-hero {
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.9), rgba(76, 175, 80, 0.8)), 
+                url('../images/legal-hero.jpg') center/cover;
+    color: white;
+    padding: 180px 0 100px;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.legal-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.legal-hero .subtitle {
+    font-size: 1.2rem;
+    opacity: 0.95;
+}
+
+/* Content Section */
+.legal-content {
+    padding: 4rem 0;
+    background: #f8f9fa;
+}
+
+.legal-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.legal-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+}
+
+.legal-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.legal-section h2 {
+    color: #2E7D32;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid #2E7D32;
+}
+
+.legal-section h3 {
+    color: #333;
+    font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.legal-section h4 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.legal-section p {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* Lists */
+.legal-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.legal-list li {
+    padding: 0.8rem 0;
+    padding-left: 2rem;
+    position: relative;
+    color: #666;
+    line-height: 1.7;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.legal-list li:last-child {
+    border-bottom: none;
+}
+
+.legal-list li i {
+    position: absolute;
+    left: 0;
+    top: 0.8rem;
+    color: #2E7D32;
+    width: 1.5rem;
+}
+
+.legal-list ol {
+    padding-left: 2rem;
+    margin: 1rem 0;
+}
+
+.legal-list ol li {
+    padding-left: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Highlight Box */
+.highlight-box {
+    background: #f0f7f0;
+    padding: 2rem;
+    border-radius: 10px;
+    border-left: 4px solid #2E7D32;
+    margin: 2rem 0;
+}
+
+.highlight-box h2 {
+    color: #1B5E20;
+}
+
+/* Contact Info Box */
+.contact-info-box {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border-left: 4px solid #2E7D32;
+}
+
+.contact-info-box p {
+    margin: 0.8rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #333;
+}
+
+.contact-info-box i {
+    color: #2E7D32;
+    width: 20px;
+}
+
+.contact-info-box a {
+    color: #2E7D32;
+    text-decoration: none;
+}
+
+.contact-info-box a:hover {
+    text-decoration: underline;
+}
+
+/* Acceptance Box */
+.acceptance-box {
+    background: #e8f5e9;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 2px solid #2E7D32;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.acceptance-box h2 {
+    color: #1B5E20;
+    border-bottom: none;
+    margin-bottom: 1rem;
+}
+
+/* Certifications Grid */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.cert-card {
+    background: white;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.cert-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-color: #2E7D32;
+}
+
+.cert-card.pending {
+    opacity: 0.8;
+    border-style: dashed;
+}
+
+.cert-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #2E7D32, #4CAF50);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.cert-icon i {
+    font-size: 1.8rem;
+    color: white;
+}
+
+.cert-card h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.cert-card p {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.cert-status {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.cert-status.active {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.cert-status.pending {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+/* Partners List */
+.partners-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.partner-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #2E7D32;
+}
+
+.partner-item i {
+    font-size: 2rem;
+    color: #2E7D32;
+    margin-top: 0.3rem;
+}
+
+.partner-item h4 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.partner-item p {
+    margin: 0;
+    color: #666;
+}
+
+/* Expansion Cards */
+.expansion-card {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    background: white;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    transition: all 0.3s;
+}
+
+.expansion-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-color: #2E7D32;
+}
+
+.expansion-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #2E7D32, #4CAF50);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.expansion-icon i {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.expansion-content {
+    flex: 1;
+}
+
+.expansion-content h3 {
+    color: #2E7D32;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.expansion-content p {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #2E7D32;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.timeline-marker {
+    width: 60px;
+    height: 60px;
+    background: #2E7D32;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 3px 10px rgba(46, 125, 50, 0.3);
+}
+
+.timeline-content {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #2E7D32;
+}
+
+.timeline-content h4 {
+    color: #2E7D32;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.timeline-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.timeline-content ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #666;
+}
+
+.timeline-content ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #2E7D32;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .legal-wrapper {
+        padding: 2rem;
+    }
+    
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .expansion-card {
+        flex-direction: column;
+    }
+    
+    .timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-marker {
+        width: 40px;
+        height: 40px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .legal-hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .legal-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .legal-section h3 {
+        font-size: 1.2rem;
+    }
+    
+    .timeline-item {
+        flex-direction: column;
+    }
+    
+    .timeline::before {
+        display: none;
+    }
+}
+
+
+
