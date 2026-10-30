@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Report illegal dump sites and waste disposal areas to help keep our environment clean.">
+    <title>Report Dump Site - Eco-Mali Exchange Limited</title>
+    <link rel="canonical" href="https://ecomaliexchange.co.ke/report-dumpsite.html">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" aria-label="Eco-Mali Exchange Limited Home">
+                    <img src="images/logo.png" alt="Eco-Mali Exchange Limited Logo">
+                    <span>Eco-Mali Exchange Limited</span>
+                </a>
+            </div>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="about.html" role="menuitem">About</a></li>
+                <li role="none"><a href="services.html" role="menuitem">Services</a></li>
+                <li role="none"><a href="platform.html" role="menuitem">Platform</a></li>
+                <li role="none"><a href="impact.html" role="menuitem">Impact</a></li>
+                <li role="none"><a href="blog.html" role="menuitem">Blog</a></li>
+                <li role="none"><a href="report-dumpsite.html" class="active" role="menuitem" aria-current="page">Report Dump Site</a></li>
+                <li role="none"><a href="contact.html" role="menuitem">Contact</a></li>
+                <li role="none"><a href="auth.html?mode=login" role="menuitem">Sign In</a></li>
+                <li role="none"><a href="auth.html" role="menuitem">Sign Up</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1><i class="fas fa-exclamation-triangle"></i> Report a Dump Site</h1>
+            <p>Help us keep our environment clean by reporting dump sites and waste disposal areas.</p>
+        </div>
+    </section>
+
+    <!-- Report Form -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Why Report?</h2>
+                    <p>Dump sites pose serious threats to:</p>
+                    <ul style="list-style: disc; margin-left: 1.5rem; margin-top: 1rem; line-height: 1.8;">
+                        <li>Public health and safety</li>
+                        <li>Environmental quality</li>
+                        <li>Community well-being</li>
+                        <li>Water and soil contamination</li>
+                    </ul>
+                    
+                    <div class="info-box" style="margin-top: 2rem; padding: 1.5rem; background: #f0fdf4; border-left: 4px solid #2e7d32; border-radius: 8px;">
+                        <h3 style="margin: 0 0 0.5rem 0; color: #2e7d32;"><i class="fas fa-info-circle"></i> What to Include</h3>
+                        <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8;">
+                            <li><i class="fas fa-check" style="color: #2e7d32; margin-right: 0.5rem;"></i> Exact location or nearest landmark</li>
+                            <li><i class="fas fa-check" style="color: #2e7d32; margin-right: 0.5rem;"></i> Type of waste dumped</li>
+                            <li><i class="fas fa-check" style="color: #2e7d32; margin-right: 0.5rem;"></i> Estimated size of dump site</li>
+                            <li><i class="fas fa-check" style="color: #2e7d32; margin-right: 0.5rem;"></i> Photos if possible</li>
+                            <li><i class="fas fa-check" style="color: #2e7d32; margin-right: 0.5rem;"></i> Any environmental concerns</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box" style="margin-top: 1rem; padding: 1.5rem; background: #fff3cd; border-left: 4px solid #ff9800; border-radius: 8px;">
+                        <h3 style="margin: 0 0 0.5rem 0; color: #856404;"><i class="fas fa-shield-alt"></i> Your Privacy</h3>
+                        <p style="margin: 0; color: #856404;">Your report is anonymous. We only use your contact information to follow up if needed.</p>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form id="reportDumpsiteForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="reporterName">Your Name (Optional)</label>
+                            <input type="text" id="reporterName" name="reporterName" placeholder="Your name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reporterEmail">Your Email (Optional)</label>
+                            <input type="email" id="reporterEmail" name="reporterEmail" placeholder="your.email@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reporterPhone">Your Phone (Optional)</label>
+                            <input type="tel" id="reporterPhone" name="reporterPhone" placeholder="+254 7XX XXX XXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Location <span style="color: red;">*</span></label>
+                            <input type="text" id="location" name="location" required placeholder="e.g., Near Kutus Market, Kirinyaga County">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="county">County <span style="color: red;">*</span></label>
+                            <select id="county" name="county" required>
+                                <option value="">Select County</option>
+                                <option value="Kirinyaga">Kirinyaga</option>
+                                <option value="Nairobi">Nairobi</option>
+                                <option value="Mombasa">Mombasa</option>
+                                <option value="Kisumu">Kisumu</option>
+                                <option value="Nakuru">Nakuru</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="wasteType">Type of Waste <span style="color: red;">*</span></label>
+                            <select id="wasteType" name="wasteType" required>
+                                <option value="">Select Waste Type</option>
+                                <option value="plastic">Plastic</option>
+                                <option value="organic">Organic</option>
+                                <option value="metal">Metal</option>
+                                <option value="electronic">Electronic/E-Waste</option>
+                                <option value="construction">Construction Debris</option>
+                                <option value="medical">Medical Waste</option>
+                                <option value="mixed">Mixed Waste</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="severity">Severity Level <span style="color: red;">*</span></label>
+                            <select id="severity" name="severity" required>
+                                <option value="">Select Severity</option>
+                                <option value="low">Low - Small pile, minimal impact</option>
+                                <option value="medium">Medium - Moderate size, some impact</option>
+                                <option value="high">High - Large site, significant impact</option>
+                                <option value="critical">Critical - Immediate health/environmental hazard</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description <span style="color: red;">*</span></label>
+                            <textarea id="description" name="description" rows="5" required placeholder="Provide details about the dump site: size, type of waste, environmental concerns, etc."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="images">Upload Photos (Optional)</label>
+                            <input type="file" id="images" name="images" accept="image/*" multiple>
+                            <small style="color: #666; display: block; margin-top: 0.5rem;">You can upload multiple images (max 5MB each)</small>
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i> Submit Report
+                        </button>
+
+                        <div id="reportMessage" style="margin-top: 1rem; padding: 1rem; border-radius: 6px; display: none;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-cta">
+                <h2>Join the Movement</h2>
+                <div class="footer-buttons">
+                    <a href="auth.html" class="btn-primary">Sign Up</a>
+                    <a href="contact.html" class="btn-secondary">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Eco-Mali Exchange Limited</h4>
+                    <p>Youth-led environmental tech company based in Kirinyaga.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="platform.html">Platform</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="report-dumpsite.html">Report Dump Site</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Kutus, Kirinyaga County</p>
+                    <p><i class="fas fa-phone"></i> +254 798 995983</p>
+                    <p><i class="fas fa-envelope"></i> info@ecomaliexchange.co.ke</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eco-Mali Exchange Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+        document.getElementById('reportDumpsiteForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const messageDiv = document.getElementById('reportMessage');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            
+            const formData = {
+                reporterName: document.getElementById('reporterName').value,
+                reporterEmail: document.getElementById('reporterEmail').value,
+                reporterPhone: document.getElementById('reporterPhone').value,
+                location: document.getElementById('location').value,
+                county: document.getElementById('county').value,
+                wasteType: document.getElementById('wasteType').value,
+                severity: document.getElementById('severity').value,
+                description: document.getElementById('description').value,
+                status: 'pending'
+            };
+            
+            try {
+                const response = await fetch('/api/dump-reports', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    messageDiv.style.display = 'block';
+                    messageDiv.style.background = '#d4edda';
+                    messageDiv.style.color = '#155724';
+                    messageDiv.style.border = '1px solid #c3e6cb';
+                    messageDiv.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! Your report has been submitted successfully. We will review it shortly.';
+                    
+                    // Reset form
+                    this.reset();
+                } else {
+                    throw new Error(data.error || 'Failed to submit report');
+                }
+            } catch (error) {
+                console.error('Error submitting report:', error);
+                messageDiv.style.display = 'block';
+                messageDiv.style.background = '#f8d7da';
+                messageDiv.style.color = '#721c24';
+                messageDiv.style.border = '1px solid #f5c6cb';
+                messageDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> Failed to submit report. Please try again.';
+            } finally {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Report';
+            }
+        });
+    </script>
+</body>
+</html>

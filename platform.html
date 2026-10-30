@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Mali Platform - Digital Waste Exchange</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/platform.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Eco-Mali Exchange Limited Logo">
+                <span>Eco-Mali Exchange Limited</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="platform.html" class="active">Platform</a></li>
+                <li><a href="impact.html">Impact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="report-dumpsite.html">Report Dump Site</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <a href="auth.html?mode=login" role="menuitem">Sign In</a>
+                <li role="none"><a href="auth.html" role="menuitem">Sign Up</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Platform Hero -->
+    <section class="platform-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>The Eco-Mali Digital Platform</h1>
+                <p class="subtitle">Transforming waste management through technology, real-time connections, and impact
+                    tracking.</p>
+                <div class="platform-live">
+                    <div class="badge success">Live Now</div>
+                    <h3>Digital Waste Exchange Platform</h3>
+                    <p>Join our active community of waste generators and recyclers today.</p>
+                    <a href="auth.html?mode=signup" class="btn-primary">Get Started</a>
+                    <a href="auth.html?mode=login" class="btn-secondary">Sign In</a>
+                </div>
+            </div>
+            <div class="hero-preview">
+                <div class="preview-screen">
+                    <img src="images/platform-preview.png" alt="Platform Preview">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Features -->
+    <section class="platform-features">
+        <div class="container">
+            <h2>Platform Features</h2>
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>Waste Upload Portal</h3>
+                    <p>Upload waste with photos, GPS location, type, and quantity. Get instant pricing from recyclers.
+                    </p>
+                    <div class="feature-demo">
+                        <div class="demo-form">
+                            <select>
+                                <option>Select Waste Type</option>
+                                <option>Plastic Bottles</option>
+                                <option>Paper & Cardboard</option>
+                                <option>E-Waste</option>
+                                <option>Organic Waste</option>
+                            </select>
+                            <input type="number" placeholder="Weight (kg)">
+                            <button class="demo-btn">Upload Photo</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Recycler Marketplace</h3>
+                    <p>Browse verified recyclers, compare prices, and schedule pickups. All in one place.</p>
+                    <div class="feature-demo">
+                        <div class="recycler-list">
+                            <div class="recycler-demo">
+                                <span>✅ Green Recyclers Ltd</span>
+                                <span>Plastic, Paper</span>
+                                <span>Ksh 15/kg</span>
+                            </div>
+                            <div class="recycler-demo">
+                                <span>✅ EcoPlast Kenya</span>
+                                <span>Plastic only</span>
+                                <span>Ksh 18/kg</span>
+                            </div>
+                            <div class="recycler-demo">
+                                <span>✅ Kirinyaga Waste</span>
+                                <span>All types</span>
+                                <span>Ksh 12/kg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Dumpsite Reporting</h3>
+                    <p>Report illegal dumping sites with GPS coordinates and photos. Help clean your community.</p>
+                    <div class="feature-demo">
+                        <div id="map-demo" style="height: 200px; border-radius: 8px;"></div>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>User Dashboard</h3>
+                    <p>Track your points, transactions, environmental impact, and earnings all in one dashboard.</p>
+                    <div class="feature-demo">
+                        <div class="dashboard-demo">
+                            <div class="stat-demo">
+                                <span>Total Points</span>
+                                <strong>1,250</strong>
+                            </div>
+                            <div class="stat-demo">
+                                <span>Waste Diverted</span>
+                                <strong>450 kg</strong>
+                            </div>
+                            <div class="stat-demo">
+                                <span>CO₂ Saved</span>
+                                <strong>1.2 t</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Impact Tracking</h3>
+                    <p>See real-time metrics on CO₂ saved, waste diverted, trees saved, and community impact.</p>
+                    <div class="feature-demo">
+                        <div class="impact-meter">
+                            <div class="meter-fill" style="width: 75%;"></div>
+                            <span>75% to monthly goal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <h3>Digital Receipts</h3>
+                    <p>Get digital receipts for all transactions. Track payments, quantities, and recycler details.</p>
+                    <div class="feature-demo">
+                        <div class="receipt-demo">
+                            <h4>Digital Receipt #00123</h4>
+                            <p>Plastic Bottles: 50 kg</p>
+                            <p>Recycler: Green Recyclers Ltd</p>
+                            <p>Amount: Ksh 750</p>
+                            <p>Date: 15/03/2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Workflow -->
+    <section class="platform-workflow">
+        <div class="container">
+            <h2>How It Works</h2>
+            <div class="workflow-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Sign Up</h3>
+                    <p>Create your free account as a waste generator, collector, or recycler.</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>List Waste</h3>
+                    <p>Upload waste details with photos, weight, and location.</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Offers</h3>
+                    <p>Receive competitive offers from verified recyclers in your area.</p>
+                </div>
+                <div class="step-arrow">→</div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Connect & Earn</h3>
+                    <p>Choose the best offer, schedule pickup, and earn points/cash.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="beta-cta">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Join thousands of others in Kirinyaga managing waste efficiently and earning rewards.</p>
+            <div class="cta-options">
+                <a href="auth.html?mode=signup" class="btn-primary">Create Account</a>
+                <a href="auth.html?mode=login" class="btn-secondary">Sign In</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Eco-Mali Platform</h4>
+                    <p>The digital future of waste management in Kirinyaga and beyond.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Platform Features</h4>
+                    <ul>
+                        <li><a href="#upload">Waste Upload</a></li>
+                        <li><a href="#marketplace">Recycler Marketplace</a></li>
+                        <li><a href="#dashboard">User Dashboard</a></li>
+                        <li><a href="#impact">Impact Tracking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="impact.html">Impact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Platform Team</h4>
+                    <p><i class="fas fa-envelope"></i> platform@ecomaliexchange.co.ke</p>
+                    <p><i class="fas fa-phone"></i> +254 797 240 399 (Platform Support)</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eco-Mali Exchange Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/platform.js"></script>
+</body>
+
+</html>

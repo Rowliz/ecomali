@@ -1,0 +1,70 @@
+# Node / JavaScript
+node_modules/
+server/node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+
+# Environment configs
+.env
+server/.env
+.env.*
+server/.env.*
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+logs/**/*.log
+
+# Coverage and caches
+coverage/
+.cache/
+.tmp/
+
+# Editor settings
+.vscode/# Dependencies
+node_modules/
+server/node_modules/
+
+# Environment variables
+.env
+server/.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build outputs
+dist/
+build/
+
+# Uploads
+server/uploads/*
+!server/uploads/.gitkeep
+
+# Testing
+coverage/
+
+# Misc
+*.bak
+*.tmp

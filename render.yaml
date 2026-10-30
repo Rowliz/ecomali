@@ -1,0 +1,40 @@
+services:
+  # Backend API Service
+  - type: web
+    name: eco-mali-api
+    runtime: node
+    region: oregon
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: SUPERADMIN_EMAIL
+        sync: false
+      - key: SUPERADMIN_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGO_URL
+        sync: false
+    healthCheckPath: /api/auth/health
+
+  # Static Frontend Service
+  - type: static
+    name: eco-mali-frontend
+    staticPublishPath: .
+    buildCommand: echo "No build needed"
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://eco-mali-api.onrender.com/api/*
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff

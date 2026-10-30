@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com https://r2cdn.perplexity.ai; img-src 'self' data: https:; connect-src 'self' https://eco-mali.onrender.com https://cdn.jsdelivr.net;">
+  <title>County Dashboard — Eco-Mali Exchange Limited</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/county-dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div data-protect="admin,partner,county,county_admin"></div>
+
+  <!-- Header -->
+  <header class="admin-header">
+    <div class="container">
+      <div class="brand">
+        <img src="images/logo.png" alt="Eco-Mali Exchange Limited Logo">
+        <h1>County Dashboard</h1>
+      </div>
+      <div class="county-selector">
+        <label for="countySelect">County:</label>
+        <select id="countySelect" class="county-select">
+          <option value="kirinyaga">Kirinyaga County</option>
+          <option value="embu">Embu County</option>
+          <option value="murang'a">Murang'a County</option>
+          <option value="nyeri">Nyeri County</option>
+        </select>
+      </div>
+      <div class="period-selector">
+        <label for="periodSelect">Period:</label>
+        <select id="periodSelect" class="period-select">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly" selected>Monthly</option>
+        </select>
+      </div>
+      <div class="nav-actions">
+        <a href="index.html" class="btn-ghost"><i class="fas fa-home"></i> Home</a>
+        <a href="profile.html" class="btn-ghost"><i class="fas fa-user-circle"></i> Profile</a>
+        <a href="#" data-logout class="btn-ghost"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container admin-main">
+    <!-- Overview Stats -->
+    <section class="dashboard-stats">
+      <div class="stat-card">
+        <div class="stat-icon primary">
+          <i class="fas fa-weight"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="wasteGenerated">0</h3>
+          <p>Total Waste Generated (tons)</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon success">
+          <i class="fas fa-truck"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="wasteCollected">0</h3>
+          <p>Total Waste Collected (tons)</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon warning">
+          <i class="fas fa-recycle"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="wasteRecycled">0</h3>
+          <p>Total Waste Recycled (tons)</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon danger">
+          <i class="fas fa-percentage"></i>
+        </div>
+        <div class="stat-info">
+          <h3 id="recyclingRate">0%</h3>
+          <p>Recycling Rate</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Active Users Stats -->
+    <section class="users-stats">
+      <div class="user-stat-card">
+        <i class="fas fa-industry"></i>
+        <h3 id="activeGenerators">0</h3>
+        <p>Active Waste Generators</p>
+      </div>
+      <div class="user-stat-card">
+        <i class="fas fa-recycle"></i>
+        <h3 id="activeRecyclers">0</h3>
+        <p>Active Recyclers</p>
+      </div>
+      <div class="user-stat-card">
+        <i class="fas fa-users"></i>
+        <h3 id="activeAgents">0</h3>
+        <p>Active Field Agents</p>
+      </div>
+    </section>
+
+    <!-- Waste Generation Breakdown -->
+    <section class="waste-breakdown card">
+      <h2><i class="fas fa-chart-pie"></i> Waste Generation Breakdown</h2>
+      <div class="breakdown-content">
+        <div class="breakdown-chart">
+          <canvas id="wasteBreakdownChart"></canvas>
+        </div>
+        <div class="breakdown-list">
+          <div class="waste-category">
+            <span class="category-color" style="background: #2196F3;"></span>
+            <span class="category-name">Plastic</span>
+            <span class="category-value" id="plasticValue">0 tons</span>
+            <span class="category-percent" id="plasticPercent">0%</span>
+          </div>
+          <div class="waste-category">
+            <span class="category-color" style="background: #4CAF50;"></span>
+            <span class="category-name">Organic</span>
+            <span class="category-value" id="organicValue">0 tons</span>
+            <span class="category-percent" id="organicPercent">0%</span>
+          </div>
+          <div class="waste-category">
+            <span class="category-color" style="background: #FF9800;"></span>
+            <span class="category-name">Paper</span>
+            <span class="category-value" id="paperValue">0 tons</span>
+            <span class="category-percent" id="paperPercent">0%</span>
+          </div>
+          <div class="waste-category">
+            <span class="category-color" style="background: #9E9E9E;"></span>
+            <span class="category-name">Metal</span>
+            <span class="category-value" id="metalValue">0 tons</span>
+            <span class="category-percent" id="metalPercent">0%</span>
+          </div>
+          <div class="waste-category">
+            <span class="category-color" style="background: #00BCD4;"></span>
+            <span class="category-name">Glass</span>
+            <span class="category-value" id="glassValue">0 tons</span>
+            <span class="category-percent" id="glassPercent">0%</span>
+          </div>
+          <div class="waste-category">
+            <span class="category-color" style="background: #F44336;"></span>
+            <span class="category-name">E-waste</span>
+            <span class="category-value" id="ewasteValue">0 tons</span>
+            <span class="category-percent" id="ewastePercent">0%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Geographic Distribution -->
+    <section class="geographic-section card">
+      <h2><i class="fas fa-map-marked-alt"></i> Geographic Distribution & Heat Map</h2>
+      <div class="geo-content">
+        <div class="map-container">
+          <div id="countyMap" class="heatmap-placeholder">
+            <p>Interactive heat map will be displayed here</p>
+            <small>Showing high-volume zones, collection points, hotspots, and recycler locations</small>
+          </div>
+        </div>
+        <div class="geo-stats">
+          <div class="geo-stat-item">
+            <i class="fas fa-fire"></i>
+            <h4 id="highVolumeZones">0</h4>
+            <p>High-volume Waste Zones</p>
+          </div>
+          <div class="geo-stat-item">
+            <i class="fas fa-map-pin"></i>
+            <h4 id="collectionPoints">0</h4>
+            <p>Collection Points</p>
+          </div>
+          <div class="geo-stat-item">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h4 id="dumpingHotspots">0</h4>
+            <p>Illegal Dumping Hotspots</p>
+          </div>
+          <div class="geo-stat-item">
+            <i class="fas fa-industry"></i>
+            <h4 id="recyclerLocations">0</h4>
+            <p>Recycler Locations</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collection & Operations Performance -->
+    <section class="operations-section card">
+      <h2><i class="fas fa-truck-loading"></i> Collection & Operations Performance</h2>
+      <div class="operations-grid">
+        <div class="operation-card">
+          <i class="fas fa-check-circle"></i>
+          <h3 id="pickupsCompleted">0</h3>
+          <p>Pickups Completed</p>
+        </div>
+        <div class="operation-card">
+          <i class="fas fa-times-circle"></i>
+          <h3 id="pickupsMissed">0</h3>
+          <p>Missed/Delayed Pickups</p>
+        </div>
+        <div class="operation-card">
+          <i class="fas fa-clock"></i>
+          <h3 id="avgTurnaround">0h</h3>
+          <p>Avg Turnaround Time</p>
+        </div>
+        <div class="operation-card">
+          <i class="fas fa-hourglass-half"></i>
+          <h3 id="wasteBacklog">0</h3>
+          <p>Pending Pickups (Backlog)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recycler Performance -->
+    <section class="recycler-performance card">
+      <h2><i class="fas fa-industry"></i> Recycler Performance Summary</h2>
+      <div class="performance-metrics">
+        <div class="metric-item">
+          <span class="metric-label">Active Recyclers:</span>
+          <span class="metric-value" id="activeRecyclersCount">0</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-label">Avg Volume per Recycler:</span>
+          <span class="metric-value" id="avgVolumePerRecycler">0 tons</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-label">Compliance Rate:</span>
+          <span class="metric-value" id="complianceRate">0%</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-label">Avg Reliability Score:</span>
+          <span class="metric-value" id="reliabilityScore">0/10</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-label">Rejected Loads:</span>
+          <span class="metric-value danger" id="rejectedLoads">0</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Field Agent Activity -->
+    <section class="agent-activity card">
+      <h2><i class="fas fa-users-cog"></i> Field Agent Activity</h2>
+      <div class="agent-grid">
+        <div class="agent-stat">
+          <i class="fas fa-user-check"></i>
+          <h3 id="activeAgentsCount">0</h3>
+          <p>Active Agents</p>
+        </div>
+        <div class="agent-stat">
+          <i class="fas fa-check-double"></i>
+          <h3 id="uploadsVerified">0</h3>
+          <p>Uploads Verified</p>
+        </div>
+        <div class="agent-stat">
+          <i class="fas fa-clipboard-check"></i>
+          <h3 id="siteInspections">0</h3>
+          <p>Site Inspections</p>
+        </div>
+        <div class="agent-stat">
+          <i class="fas fa-handshake"></i>
+          <h3 id="communityEngagements">0</h3>
+          <p>Community Engagements</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compliance & Risk Flags -->
+    <section class="compliance-risks card">
+      <h2><i class="fas fa-exclamation-triangle"></i> Compliance & Risk Flags</h2>
+      <div class="risk-alerts">
+        <div class="risk-alert warning">
+          <i class="fas fa-question-circle"></i>
+          <div class="risk-info">
+            <h4>Unverified Waste Uploads</h4>
+            <p id="unverifiedUploads">0 pending verification</p>
+          </div>
+        </div>
+        <div class="risk-alert danger">
+          <i class="fas fa-ban"></i>
+          <div class="risk-info">
+            <h4>Repeated Missed Pickups</h4>
+            <p id="repeatedMissed">0 instances</p>
+          </div>
+        </div>
+        <div class="risk-alert critical">
+          <i class="fas fa-trash-alt"></i>
+          <div class="risk-info">
+            <h4>Illegal Dumping Reports</h4>
+            <p id="illegalDumping">0 active reports</p>
+          </div>
+        </div>
+        <div class="risk-alert warning">
+          <i class="fas fa-exclamation"></i>
+          <div class="risk-info">
+            <h4>Non-compliant Recyclers</h4>
+            <p id="nonCompliant">0 flagged</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Financial Snapshot -->
+    <section class="financial-snapshot card">
+      <h2><i class="fas fa-dollar-sign"></i> Financial Snapshot <span class="restricted-badge">Restricted View</span>
+      </h2>
+      <div class="financial-grid">
+        <div class="financial-item">
+          <span class="financial-label">Value of Waste Traded</span>
+          <span class="financial-value" id="wasteValue">KES 0</span>
+        </div>
+        <div class="financial-item">
+          <span class="financial-label">Payments Processed</span>
+          <span class="financial-value" id="paymentsProcessed">KES 0</span>
+        </div>
+        <div class="financial-item">
+          <span class="financial-label">Avg Price - Plastic</span>
+          <span class="financial-value" id="avgPricePlastic">KES 0/kg</span>
+        </div>
+        <div class="financial-item">
+          <span class="financial-label">Avg Price - Metal</span>
+          <span class="financial-value" id="avgPriceMetal">KES 0/kg</span>
+        </div>
+        <div class="financial-item">
+          <span class="financial-label">Operational Costs</span>
+          <span class="financial-value" id="operationalCosts">KES 0</span>
+        </div>
+      </div>
+      <p class="financial-note">
+        <i class="fas fa-info-circle"></i>
+        For internal and county partnership use. Data ensures sustainability and transparency.
+      </p>
+    </section>
+
+    <!-- Environmental Impact -->
+    <section class="environmental-impact card">
+      <h2><i class="fas fa-leaf"></i> Environmental Impact Indicators</h2>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-icon">
+            <i class="fas fa-trash-restore"></i>
+          </div>
+          <div class="impact-data">
+            <h3 id="wasteDiverted">0 tons</h3>
+            <p>Waste Diverted from Dumpsites</p>
+          </div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-icon">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <div class="impact-data">
+            <h3 id="co2Avoided">0 kg</h3>
+            <p>Estimated CO₂ Emissions Avoided</p>
+          </div>
+        </div>
+        <div class="impact-card">
+          <div class="impact-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="impact-data">
+            <h3 id="riskReduction">0%</h3>
+            <p>Environmental Risk Reduction Index</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/session.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="js/county-dashboard.js"></script>
+</body>
+
+</html>

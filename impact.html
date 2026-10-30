@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Impact - Eco-Mali Exchange Limited</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/impact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Eco-Mali Exchange Limited Logo">
+                <span>Eco-Mali Exchange Limited</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="platform.html">Platform</a></li>
+                <li><a href="impact.html" class="active">Impact</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="report-dumpsite.html">Report Dump Site</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <a href="auth.html?mode=login"  role="menuitem">Sign In</a>
+                <li role="none"><a href="auth.html" role="menuitem">Sign Up</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Impact Hero -->
+    <section class="impact-hero">
+        <div class="container">
+            <h1>Our Impact & Results</h1>
+            <p class="subtitle">Measuring our contribution to a cleaner Kirinyaga and sustainable future through data-driven insights.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <h3>500+</h3>
+                    <p>Kilograms of Waste Digitized</p>
+                </div>
+                <div class="hero-stat">
+                    <h3>47</h3>
+                    <p>Dumpsites Mapped & Reported</p>
+                </div>
+                <div class="hero-stat">
+                    <h3>320+</h3>
+                    <p>Youth Engaged</p>
+                </div>
+                <div class="hero-stat">
+                    <h3>18</h3>
+                    <p>Verified Recycling Partners</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Annual Impact Report -->
+    <section class="annual-report">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> 2025 Annual Impact Report</h2>
+                <a href="#" class="btn-outline">
+                    <i class="fas fa-download"></i> Download Full Report (PDF)
+                </a>
+            </div>
+            
+            <div class="report-highlights">
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-weight-hanging"></i>
+                    </div>
+                    <h3>12.5 Tons</h3>
+                    <p>Waste diverted from landfills</p>
+                    <div class="highlight-change positive">
+                        <i class="fas fa-arrow-up"></i> 45% increase from 2022
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3>850+</h3>
+                    <p>Trees equivalent saved (CO₂)</p>
+                    <div class="highlight-change positive">
+                        <i class="fas fa-arrow-up"></i> 62% increase from 2022
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>15 Communities</h3>
+                    <p>Directly impacted across Kirinyaga</p>
+                    <div class="highlight-change positive">
+                        <i class="fas fa-arrow-up"></i> 3 new communities in 2025
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Ksh 450,000+</h3>
+                    <p>Economic value created from waste</p>
+                    <div class="highlight-change positive">
+                        <i class="fas fa-arrow-up"></i> 78% increase from 2022
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Charts Grid -->
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3>Waste Diverted by Type (2025)</h3>
+                    <canvas id="wasteTypeChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Monthly Impact Growth</h3>
+                    <canvas id="growthChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Youth Engagement by Activity</h3>
+                    <canvas id="youthChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Community Reach Expansion</h3>
+                    <canvas id="communityChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map -->
+    <section class="impact-map">
+        <div class="container">
+            <h2><i class="fas fa-map-marked-alt"></i> Impact Mapping: Waste Hotspots & Cleanup Zones</h2>
+            <div class="map-controls">
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="dot hotspot"></span>
+                        <span>Active Dumpsite (Needs cleanup)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="dot cleaned"></span>
+                        <span>Cleaned in 2025</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="dot monitoring"></span>
+                        <span>Under Monitoring</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="dot recycler"></span>
+                        <span>Recycling Facility</span>
+                    </div>
+                </div>
+                <div class="map-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="hotspot">Hotspots</button>
+                    <button class="filter-btn" data-filter="cleaned">Cleaned Sites</button>
+                    <button class="filter-btn" data-filter="recycler">Recyclers</button>
+                </div>
+            </div>
+            <div class="map-visualization">
+                <div id="impactMap" style="height: 500px; border-radius: 10px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies">
+        <div class="container">
+            <h2>Success Stories & Case Studies</h2>
+            <div class="studies-grid">
+                <div class="case-study">
+                    <div class="study-image">
+                        <img src="images/case-study1.jpg" alt="Kutus Market Transformation">
+                        <div class="study-badge">Community Impact</div>
+                    </div>
+                    <div class="study-content">
+                        <h3>Kutus Market Transformation</h3>
+                        <p class="study-location"><i class="fas fa-map-marker-alt"></i> Kutus Market, Kirinyaga</p>
+                        <p class="study-desc">Reduced informal dumping by 85% through coordinated waste collection and trader education programs.</p>
+                        <div class="study-stats">
+                            <div class="study-stat">
+                                <strong>3 Tons/month</strong>
+                                <span>Waste now properly managed</span>
+                            </div>
+                            <div class="study-stat">
+                                <strong>45 Traders</strong>
+                                <span>Trained in waste segregation</span>
+                            </div>
+                            <div class="study-stat">
+                                <strong>Ksh 15,000/month</strong>
+                                <span>Additional income generated</span>
+                            </div>
+                        </div>
+                        <a href="#" class="study-link">Read Full Case Study →</a>
+                    </div>
+                </div>
+                
+                <div class="case-study">
+                    <div class="study-image">
+                        <img src="images/case-study2.jpg" alt="Youth Recycling Enterprise">
+                        <div class="study-badge">Youth Empowerment</div>
+                    </div>
+                    <div class="study-content">
+                        <h3>Youth Recycling Enterprise</h3>
+                        <p class="study-location"><i class="fas fa-map-marker-alt"></i> Kerugoya Youth Center</p>
+                        <p class="study-desc">Trained 25 youth in waste collection and sorting, creating sustainable livelihoods while cleaning the environment.</p>
+                        <div class="study-stats">
+                            <div class="study-stat">
+                                <strong>25 Youth</strong>
+                                <span>Trained & employed</span>
+                            </div>
+                            <div class="study-stat">
+                                <strong>8 Tons</strong>
+                                <span>Collected in 6 months</span>
+                            </div>
+                            <div class="study-stat">
+                                <strong>Ksh 5,000 avg.</strong>
+                                <span>Monthly income per youth</span>
+                            </div>
+                        </div>
+                        <a href="#" class="study-link">Read Full Case Study →</a>
+                    </div>
+                </div>
+                
+                <div class="case-study">
+                    <div class="study-image">
+                        <img src="images/case-study3.jpg" alt="School Recycling Program">
+                        <div class="study-badge">Education</div>
+                    </div>
+                    <div class="study-content">
+                        <h3>School Recycling Program</h3>
+                        <p class="study-location"><i class="fas fa-map-marker-alt"></i> 5 Schools in Kirinyaga</p>
+                        <p class="study-desc">Implemented recycling programs in schools, engaging 500+ students in environmental stewardship.</p>
+                        <div class="study-stats">
+                            <div class="study-stat">
+                                <strong>500+ Students</strong>
+                                <span>Environmentally aware</span>
+                            </div>
+                            <div class="study-stat">
+                                <strong>1.2 Tons</strong>
+                                <span>Waste collected from schools</span>
+                            </div>
+                            <div class="study-stat">
+                                <strong>5 Eco-Clubs</strong>
+                                <span>Established</span>
+                            </div>
+                        </div>
+                        <a href="#" class="study-link">Read Full Case Study →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before & After Gallery -->
+    <section class="before-after">
+        <div class="container">
+            <h2>Visual Impact: Before & After</h2>
+            <div class="gallery-container">
+                <div class="ba-item">
+                    <div class="ba-images">
+                        <div class="before">
+                            <img src="images/before1.jpg" alt="Before cleanup">
+                            <div class="ba-label">Before</div>
+                        </div>
+                        <div class="after">
+                            <img src="images/after1.jpg" alt="After cleanup">
+                            <div class="ba-label">After</div>
+                        </div>
+                    </div>
+                    <div class="ba-details">
+                        <h3>Kagio Market Dumpsite</h3>
+                        <p>Community-led cleanup transformed this illegal dumpsite into a green space in March 2025.</p>
+                        <div class="ba-stats">
+                            <span><i class="fas fa-trash"></i> 2.5 Tons removed</span>
+                            <span><i class="fas fa-users"></i> 50 Volunteers</span>
+                            <span><i class="fas fa-calendar"></i> March 15, 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ba-item">
+                    <div class="ba-images">
+                        <div class="before">
+                            <img src="images/before2.jpg" alt="Before cleanup">
+                            <div class="ba-label">Before</div>
+                        </div>
+                        <div class="after">
+                            <img src="images/after2.jpg" alt="After cleanup">
+                            <div class="ba-label">After</div>
+                        </div>
+                    </div>
+                    <div class="ba-details">
+                        <h3>River Thiba Bank</h3>
+                        <p>Plastic waste removal from river bank prevented pollution of water source for Mwea irrigation.</p>
+                        <div class="ba-stats">
+                            <span><i class="fas fa-trash"></i> 1.8 Tons removed</span>
+                            <span><i class="fas fa-users"></i> 35 Volunteers</span>
+                            <span><i class="fas fa-calendar"></i> June 22, 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Impact -->
+    <section class="partner-impact">
+        <div class="container">
+            <h2>Our Partners' Impact</h2>
+            <div class="partner-logos">
+                <div class="partner-logo">
+                    <img src="images/partner-county.png" alt="Kirinyaga County Government">
+                    <p>Kirinyaga County Government</p>
+                </div>
+                <div class="partner-logo">
+                    <img src="images/partner-nea.png" alt="National Environment Authority">
+                    <p>National Environment Authority</p>
+                </div>
+                <div class="partner-logo">
+                    <img src="images/partner-wwf.png" alt="World Wildlife Fund">
+                    <p>World Wildlife Fund Kenya</p>
+                </div>
+                <div class="partner-logo">
+                    <img src="images/partner-rotary.png" alt="Rotary Club">
+                    <p>Rotary Club of Kirinyaga</p>
+                </div>
+                <div class="partner-logo">
+                    <img src="images/partner-unep.png" alt="UN Environment Programme">
+                    <p>UN Environment Programme</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact CTA -->
+    <section class="impact-cta">
+        <div class="container">
+            <h2>Be Part of Our Impact Story</h2>
+            <p>Join us in creating measurable environmental change in Kirinyaga and beyond.</p>
+            <div class="cta-options">
+                <a href="contact.html" class="cta-card">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Get Involved</h3>
+                    <p>Contact us to learn about opportunities</p>
+                </a>
+                <a href="donate.html" class="cta-card">
+                    <i class="fas fa-donate"></i>
+                    <h3>Donate</h3>
+                    <p>Support our programs with financial contribution</p>
+                </a>
+                <a href="partner.html" class="cta-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Partner</h3>
+                    <p>Collaborate with us for greater impact</p>
+                </a>
+                <a href="contact.html" class="cta-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Report Impact</h3>
+                    <p>Share data or report environmental issues</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Impact & Results</h4>
+                    <p>Transparent reporting on our environmental and social impact in Kirinyaga County.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Impact Reports</h4>
+                    <ul>
+                        <li><a href="#">2025 Annual Report</a></li>
+                        <li><a href="#">Quarterly Updates</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Data & Research</h4>
+                    <ul>
+                        <li><a href="#">Waste Data Portal</a></li>
+                        <li><a href="#">GIS Maps</a></li>
+                        <li><a href="#">Impact Methodology</a></li>
+                        <li><a href="#">Research Partnerships</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Impact Team</h4>
+                    <p><i class="fas fa-envelope"></i> impact@ecomaliexchange.co.ke</p>
+                    <p><i class="fas fa-phone"></i> +254 797 240 399 (Impact Monitoring)</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Eco-Mali Exchange Limited. Impact data updated: December 15, 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/impact.js"></script>
+</body>
+</html>
